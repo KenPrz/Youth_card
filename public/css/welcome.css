@@ -1,0 +1,110 @@
+/* *{
+    border:1px solid red;
+} */
+
+:root {
+    --background: #eeee;
+    --secondary: #F26821;
+    --secondary-hover: #f3905f;
+    --tertiary: #60787A;
+    --text: #002428;
+
+    --lg-font-size: 2rem;
+    --md-font-size: 1.5rem;
+    --sm-font-size: 1rem;
+}
+
+body {
+    font-family: 'figtree', sans-serif;
+    background-color: var(--background);
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text);
+    flex: 1;
+    width: 50%;
+    padding: 20px;
+}
+
+
+.login-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    width: 80%;
+    padding: 20px;
+}
+
+#right-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 50%;
+    padding: 20px;
+    border-left: 3px solid var(--tertiary);
+}
+
+.welcome-text{
+    text-align: center;
+}
+
+.login-section a{
+    text-decoration: none;
+    color: var(--text);
+}
+
+.button {
+    background-color: var(--secondary);
+    border: none;
+    color: var(--text);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: var(--secondary-hover);
+    transition: 200ms ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #left-section {
+        display: none;
+    }
+
+    #right-section {
+        text-align: center;
+        font-size: var(--sm-font-size);
+        border-color: var(--tertiary);
+        border-left: none;
+    }
+    
+}
