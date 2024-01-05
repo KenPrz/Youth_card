@@ -7,12 +7,21 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations.Name	Gender	Age	Birthday	Email	Contact Number	Purok	Youth Classification
+
      */
     public function up(): void
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('gender');
+            $table->integer('age');
+            $table->date('birthday');
+            $table->string('email');
+            $table->string('contact_number', 13);
+            $table->integer('purok');
+            $table->string('youth_classification');
             $table->timestamps();
         });
     }
@@ -25,3 +34,4 @@ return new class extends Migration
         Schema::dropIfExists('members');
     }
 };
+// Name	Gender	Age	Birthday	Email	Contact Number	Purok	Youth Classification
