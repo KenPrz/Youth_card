@@ -21,13 +21,17 @@
             </div>
             <div id="right-section" class="child">
                 <div class="login-section">
-                    <section class="welcome-text">
-                        <h1>Welcome</h1>
-                        <p>Please Login To Admin Dashboard</p>
-                    </section>
                     @auth
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        <section class="welcome-text">
+                            <h1>Welcome</h1>
+                            <p>You are logged in!</p>
+                        </section>
+                        <a class="button login-router" href="{{ url('/dashboard') }}">Dashboard</a>
                     @else
+                        <section class="welcome-text">
+                            <h1>Welcome</h1>
+                            <p>Please Login To Admin Dashboard</p>
+                        </section>
                         <a class="button login-router" href="{{ route('login') }}">Log in</a>
                         @if (Route::has('register'))
                             <a class="button register-router" href="{{ route('register') }}">Register</a>
