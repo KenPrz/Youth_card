@@ -9,10 +9,22 @@ class MembersController extends Controller
 {
     public function index(): View
     {
-        return view('members.index',
-            [
-                'members' => Member::all()
-            ]
-        );
+        $members = Member::paginate(6);
+        return view('members.index', compact('members'));
     }
+
+    
+    public function edit(Request $request): View
+    {
+        $member = Member::find($request->id);
+        return view('members.edit', compact('member'));
+    }
+
+    public function destroy(Request $request): View
+    {
+        $member = Member::find($request->id);
+        $member->delete();
+        return view('members.index');
+    }
+    
 }
