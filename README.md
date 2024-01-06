@@ -2,7 +2,7 @@
 
 ## Overview
 
-Your Laravel App Name is a powerful and flexible web application designed for managing event attendance and points redemption seamlessly. Leveraging RFID technology, this app provides a robust solution for identifying users, tracking their attendance at events, and facilitating points redemption.
+Youth Card RFID System (YCRS) is a powerful and flexible web application designed for managing event attendance and points redemption seamlessly. Leveraging RFID technology, this app provides a robust solution for identifying users, tracking their attendance at events, and facilitating points redemption.
 
 ## Features
 
