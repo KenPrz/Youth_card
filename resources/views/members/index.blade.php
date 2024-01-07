@@ -6,7 +6,7 @@
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="w-full">
-            <form class="flex justify-end py-4 items-center" method="POST" action="{{ route('members.find') }}">
+            <form class="flex justify-end py-4 items-center" method="GET" action="{{ route('members.index') }}">
                 @csrf
                 <x-text-input id="search" name="search" placeholder="Search..."/>
                 <button class="bg-secondary text-white p-2 rounded-md ms-2 hover:bg-secondary_hover transition-colors duration-200" type="submit">Search</button>
@@ -50,7 +50,7 @@
             </x-modal>
         </x-table.table>
         <div class="mt-2">
-            {{ $members->links() }}
-        </div>        
+            {{ $members->appends(['search' => request('search')])->links() }}
+        </div>
     </div>
 </x-app-layout>

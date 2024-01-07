@@ -7,12 +7,15 @@ use Illuminate\View\View;
 
 class MembersController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $members = Member::paginate(6);
+        if($request->has('search')) {
+            $members = Member::where('name', 'like', '%' . $request->search . '%')->paginate(6);
+        } else {
+            $members = Member::paginate(6);
+        }
         return view('members.index', compact('members'));
     }
-
     
     public function edit(Request $request): View
     {
