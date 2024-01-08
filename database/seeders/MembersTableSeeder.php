@@ -13,20 +13,20 @@ class MembersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $numberOfMembers = 200;
+        $numberOfMembers = 500;
 
         for ($i = 0; $i < $numberOfMembers; $i++) {
             $randomBirthday = $this->generateRandomBirthday();
 
             Member::create([
-                'name' => 'Member ' . ($i + 1),
-                'gender' => 'Male',
+                'name' => fake()->name,
+                'gender' => fake()->randomElement(['Male','Female']),
                 'age' => $this->calculateAge($randomBirthday),
                 'birthday' => $randomBirthday,
-                'email' => 'member' . ($i + 1) . '@example.com',
+                'email' => fake()->email,
                 'contact_number' => $this->generateRandomPhoneNumber(),
                 'purok' => rand(1, 5),
-                'youth_classification' => 'Youth',
+                'youth_classification' => fake()->randomElement(['In-School','Out-of-School']),
             ]);
         }
     }

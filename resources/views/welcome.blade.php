@@ -16,8 +16,8 @@
     @if (Route::has('login'))
         <div class="container">
             <div id="left-section" class="child">
-                <h1>Header</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio impedit maiores illum non, pariatur, dolorum laboriosam animi at culpa soluta dolores amet aperiam veniam repellat odit perspiciatis quae nisi facilis?</p>
+                <img class="welcome-img" src="{{asset('images/scan.svg')}}" alt="">
+                <h1>Welcom To Youth Card RFID System (YCRS)</h1>
             </div>
             <div id="right-section" class="child">
                 <div class="login-section">

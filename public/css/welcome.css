@@ -83,7 +83,10 @@ body {
     cursor: pointer;
     margin-top: 20px;
 }
-
+.welcome-img{
+    width: 50%;
+    height: 50%;
+}
 .button:hover {
     background-color: var(--secondary-hover);
     transition: 200ms ease-in-out;

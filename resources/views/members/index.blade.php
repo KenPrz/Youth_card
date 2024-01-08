@@ -5,12 +5,22 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="w-full">
-            <form class="flex justify-end py-4 items-center" method="GET" action="{{ route('members.index') }}">
-                @csrf
-                <x-text-input id="search" name="search" placeholder="Search..."/>
-                <button class="bg-secondary text-white p-2 rounded-md ms-2 hover:bg-secondary_hover transition-colors duration-200" type="submit">Search</button>
-            </form>
+        <div class="flex w-full">
+            <div class="flex-1 flex justify-start py-4 items-center">
+                <button
+                    class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition-colors duration-200"
+                    x-data=""
+                    x-on:click.prevent="$dispatch('open-modal', 'edit-user')"
+                    >Add
+                </button>
+            </div>
+            <div class="flex-1">
+                <form class="flex justify-end py-4 items-center" method="GET" action="{{ route('members.index') }}">
+                    @csrf
+                    <x-text-input id="search" name="search" placeholder="Search..."/>
+                    <button class="bg-secondary text-white p-2 rounded-md ms-2 hover:bg-secondary_hover transition-colors duration-200" type="submit">Search</button>
+                </form>
+            </div>
         </div>
         <x-table.table :headers="['Member','Email','Contact Number','Birthday','Purok','Classification','Action']">
             @if ($members->isEmpty())
