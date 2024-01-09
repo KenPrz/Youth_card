@@ -17,7 +17,7 @@
         <div class="container">
             <div id="left-section" class="child">
                 <img class="welcome-img" src="{{asset('images/scan.svg')}}" alt="">
-                <h1>Welcom To Youth Card RFID System (YCRS)</h1>
+                <h1>Welcome To Youth Card RFID System (YCRS)</h1>
             </div>
             <div id="right-section" class="child">
                 <div class="login-section">

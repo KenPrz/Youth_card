@@ -12,6 +12,12 @@
                     {{ __("Welcome to Dashboard!") }}
                 </div>
             </div>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-5">
+                <div class="p-6 text-gray-900">
+                    <h1>Upcoming Events</h1>
+                </div>
+                
+            </div>
         </div>
     </div>
 </x-app-layout>
