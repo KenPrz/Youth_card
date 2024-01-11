@@ -27,6 +27,7 @@ class MembersTableSeeder extends Seeder
                 'contact_number' => $this->generateRandomPhoneNumber(),
                 'purok' => rand(1, 5),
                 'youth_classification' => fake()->randomElement(['In-School','Out-of-School']),
+                'card_id' => fake()->randomNumber(9, true),
             ]);
         }
     }

@@ -19,7 +19,7 @@ class EventTableSeeder extends Seeder
             Event::create([
                 'event_name' => fake()->sentence,
                 'event_description' => fake()->paragraph,
-                'event_date' => fake()->date,
+                'event_date' => fake()->dateTimeBetween('-1 year', '+1 year'),
                 'event_level' => fake()->randomElement(['Barangay','City','Province','National']),
             ]);
         }
