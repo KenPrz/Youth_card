@@ -17,6 +17,12 @@ class MembersController extends Controller
         return view('members.index', compact('members'));
     }
     
+    public function addMember(Request $request)
+    {
+        //Lagay mo dito yung logic ng pag add ng member
+    }
+
+
     public function edit(Request $request): View
     {
         $member = Member::find($request->id);
