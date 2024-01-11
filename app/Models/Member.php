@@ -17,6 +17,7 @@ class Member extends Model
         'contact_number',
         'purok',
         'youth_classification',
+        'card_id'
     ];
 
     protected $casts = [

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('contact_number', 13);
             $table->integer('purok');
             $table->string('youth_classification');
+            $table->bigInteger('card_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }
