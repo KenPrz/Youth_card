@@ -13,4 +13,10 @@ class EventsController extends Controller
         $pastEvents = Event::where('event_date', '<', Carbon::now())->paginate(2);
         return view('events.index', compact('upcomingEvents', 'pastEvents'));
     }
+
+    public function getEvent(Request $event_id): View
+    {
+        $event = Event::where('id', $event_id)->first();
+        return view('events.event', compact('event'));
+    }
 }
