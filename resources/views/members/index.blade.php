@@ -43,7 +43,7 @@
                           <button
                                 class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
                                 
-                            > <a href="{{ url('/members/' . $member->card_id) }}">View</a></button>  
+                            > <a href="{{ url('/members/' . $member->id) }}">View</a></button>  
                           <button
                                 class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
                                 {{-- x-data=""

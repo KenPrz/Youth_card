@@ -48,8 +48,14 @@ class MembersController extends Controller
         return redirect('/members');
     }
 
-    public function show($request){
-        $member = Member::find($request);
+    public function show($card_id){
+        $member = Member::find($card_id);
+    
+        if (!$member) {
+            // Handle the case where the member with the given $card_id is not found
+            abort(404);
+        }
+
         return view('members.show')->with('members', $member);
     }
 

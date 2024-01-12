@@ -7,6 +7,7 @@ use App\Http\Controllers\MembersController;
 use App\Http\Controllers\RedeemController;
 use App\Http\Controllers\AddMemberController;
 use App\Http\Controllers\FrontPageController;
+use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +43,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
 
-    Route::post('addmember', [AddMemberController::class, 'store'])->name('store');
+    Route::post('/addmember', [MembersController::class, 'store'])->name('store');
+    Route::get('/members/{card_id}', [MembersController::class, 'show'])->name('members.show');
+
+    Route::resource('members', MembersController::class);
 });
+
 
 require __DIR__.'/auth.php';
