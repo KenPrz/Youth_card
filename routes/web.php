@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/events', [EventsController::class, 'index'])->name('events.index');
     Route::get('/events/{event_id}', [EventsController::class, 'getEvent'])->name('events.event');
-    Route::get('/events/create', [EventsController::class, 'create'])->name('events.create');
+    Route::get('/event-create', [EventsController::class, 'create'])->name('events.create');
 
     Route::get('/members', [MembersController::class, 'index'])->name('members.index');
     Route::post('/members/find', [MembersController::class, 'find'])->name('members.find');
