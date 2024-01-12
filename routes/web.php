@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/events', [EventsController::class, 'index'])->name('events.index');
-    Route::get('/event/{event_id}', [EventsController::class, 'getEvent'])->name('events.event');
+    Route::get('/event', [EventsController::class, 'getEvent'])->name('events.event');
 
     Route::get('/members', [MembersController::class, 'index'])->name('members.index');
     Route::post('/members/find', [MembersController::class, 'find'])->name('members.find');

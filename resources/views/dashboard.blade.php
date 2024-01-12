@@ -13,8 +13,11 @@
             </div>
             <div class="container flex">
                 <div class="flex flex-col w-3/4">
-                    <x-event.event-lister :events="$eventsToday" :title="'Events Today'" :nullTitle="'No Events Today'"/>
-                    <x-event.event-lister :events="$upcomingEvents" :title="'Upcoming Events'" :nullTitle="'No Upcoming Events'"/>
+                    @if ($eventsToday->count()!=0)
+                        <x-event.event-lister :events="$eventsToday" :title="'Events Today'" :nullTitle="'No Events Today'"/>
+                    @else
+                        <x-event.event-lister :events="$upcomingEvents" :title="'Upcoming Events'" :nullTitle="'No Upcoming Events'"/>
+                    @endif
                 </div>
                 <div class="flex flex-col ps-4 md:w-1/4">
                     <x-members.members-lister :membersList="$topMembers" :listTitle="'Top Members'"/>

@@ -4,19 +4,23 @@
             <h1>{{$nullTitle}}</h1>
         </div>
     @else
-        <div class="p-4 text-xl font-semibold text-gray-900 border-b">
+        <div class="p-4 text-xl font-semibold text-gray-900 border-b flex items-center justify-between">
             <h1>{{$title}}</h1>
+            @if (Route::currentRouteName()=='dashboard')
+                <a href="/events" class="text-sm text-gray-500 hover:text-gray-700">View All</a>
+            @endif
         </div>
         <div class="w-full">
             @foreach ($events as $event)
-                <button x-data="{ eventId: {{$event->id}} }" 
-                        x-on:click="$wire.getEvent(eventId)" 
+                <form method="GET" action="/event">
+                    <button name="event_id" type="submit" value="{{$event->id}}"
                         class="w-full p-4 flex flex-col justify-start items-start text-start
-                            bg-white border-b border-gray-200 hover:bg-slate-100 transition-colors duration-200">
-                    <h1 class="text-lg font-semibold">{{$event->event_name}}</h1>
-                    <p class="text-md text-gray-500">{{$event->event_date}}</p>
-                    <p class="text-md text-gray-500">{{$event->event_level}}</p>
-                </button>
+                        bg-white border-b border-gray-200 hover:bg-slate-100 transition-colors duration-200">
+                        <h1 class="text-lg font-semibold">{{$event->event_name}}</h1>
+                        <p class="text-md text-gray-500">{{ \Carbon\Carbon::parse($event->event_date)->format('F j, Y g:i A')}}</p>
+                        <p class="text-md text-gray-500">{{$event->event_level}}</p>
+                    </button>
+                </form>
             @endforeach
         </div>
         <div class="m-2">
