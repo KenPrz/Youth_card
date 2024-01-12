@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AddMemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\RedeemController;
+use App\Http\Controllers\FrontPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,6 +42,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
+
+    Route::post('addmember', [AddMemberController::class, 'store'])->name('store');
 });
 
 require __DIR__.'/auth.php';
