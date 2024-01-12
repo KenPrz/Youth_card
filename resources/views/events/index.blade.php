@@ -12,13 +12,10 @@
                     {{ __("Welcome to Events!") }}
                 </div>
                 <div class="p-6 text-gray-900">
-                    <form method="GET" action="{{route('events.create')}}">
-                        <button class="flex justify-between bg-blue-500 text-sm px-3 text-white p-2 rounded-md hover:bg-blue-600 transition-colors duration-200"
-                            >
-                            <img class="h-5 w-5 me-1" src="{{asset('images/add-circle.svg')}}" alt="">
-                            <span>Create Event</span>
-                        </button>
-                    </form>
+                    <a href="{{ route('events.create') }}" class="flex justify-between bg-blue-500 text-sm px-3 text-white p-2 rounded-md hover:bg-blue-600 transition-colors duration-200">
+                        <img class="h-5 w-5 me-1" src="{{ asset('images/add-circle.svg') }}" alt="">
+                        <span>Create Event</span>
+                    </a>
                 </div>
             </div>
             <x-event.event-lister :events="$eventsToday" :title="'Events Today'" :nullTitle="'No Events Today'"/>
