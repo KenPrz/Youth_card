@@ -9,13 +9,24 @@ class MembersController extends Controller
 {
     public function index(Request $request): View
     {
-        if($request->has('search')) {
-            $members = Member::where('name', 'like', '%' . $request->search . '%')->paginate(6);
-        } else {
-            $members = Member::paginate(6);
+        $query = Member::query();
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+    
+            $query->where('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('gender', 'like', '%' . $searchTerm . '%')
+                ->orWhere('age', 'like', '%' . $searchTerm . '%')
+                ->orWhere('birthday', 'like', '%' . $searchTerm . '%')
+                ->orWhere('email', 'like', '%' . $searchTerm . '%')
+                ->orWhere('contact_number', 'like', '%' . $searchTerm . '%')
+                ->orWhere('purok', 'like', '%' . $searchTerm . '%')
+                ->orWhere('youth_classification', 'like', '%' . $searchTerm . '%');
         }
+        $members = $query->paginate(8);
+    
         return view('members.index', compact('members'));
     }
+    
     
     public function addMember(Request $request)
     {

@@ -5,24 +5,26 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="flex w-full">
-            <div class="flex-1 flex justify-start py-4 items-center">
-                <button
-                    class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition-colors duration-200"
-                    x-data=""
-                    x-on:click.prevent="$dispatch('open-modal', 'edit-user')"
-                    >Add
-                </button>
+            <div class="flex w-full bg-white overflow-hidden shadow-sm sm:rounded-lg my-5">
+                <div class="flex-1">
+                    <form class="flex justify-start p-4 items-center" method="GET" action="{{ route('members.index') }}">
+                        @csrf
+                        <x-text-input id="search" name="search" placeholder="Search..."/>
+                        <button class="bg-secondary text-white p-2 rounded-md ms-2 hover:bg-secondary_hover transition-colors duration-200" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="flex-1 flex justify-end p-4 items-center">
+                    <button
+                        class="flex justify-between bg-blue-500 text-sm px-3 text-white p-2 rounded-md hover:bg-blue-600 transition-colors duration-200"
+                        x-data=""
+                        x-on:click.prevent="$dispatch('open-modal', 'add-user')"
+                        >
+                        <img class="h-5 w-5 me-1" src="{{asset('images/add-circle.svg')}}" alt="">
+                        <span>Add</span>
+                    </button>
+                </div>
             </div>
-            <div class="flex-1">
-                <form class="flex justify-end py-4 items-center" method="GET" action="{{ route('members.index') }}">
-                    @csrf
-                    <x-text-input id="search" name="search" placeholder="Search..."/>
-                    <button class="bg-secondary text-white p-2 rounded-md ms-2 hover:bg-secondary_hover transition-colors duration-200" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-        <x-table.table :headers="['Member', 'Name', 'Email','Contact Number','Birthday','Purok','Classification','Action']">
+        <x-table.table :headers="['Member','Email','Contact Number','Birthday','Purok','Classification','Action']">
             @if ($members->isEmpty())
                 <tr class="border-b">
                     <x-table.td colspan="7">No members found.</x-table.td>
@@ -53,6 +55,9 @@
                     </tr>
                 @endforeach
             @endif
+            <x-modal name="add-user" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                Add User
+            </x-modal>
             <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
                 Delete Account
             </x-modal>

@@ -17,9 +17,18 @@ class EventTableSeeder extends Seeder
         for ($i = 0; $i < $numberOfEvents; $i++) {
 
             Event::create([
-                'event_name' => fake()->sentence,
-                'event_description' => fake()->paragraph,
+                'event_name' => fake()->sentence(3),
+                'event_description' => fake()->sentence(6),
                 'event_date' => fake()->dateTimeBetween('-1 year', '+1 year'),
+                'event_level' => fake()->randomElement(['Barangay','City','Province','National']),
+            ]);
+        }
+        for ($i = 0; $i < 5 ; $i++) {
+
+            Event::create([
+                'event_name' => fake()->sentence(3),
+                'event_description' => fake()->sentence(6),
+                'event_date' => fake()->dateTimeBetween('-1 hour', '+1 hour'),
                 'event_level' => fake()->randomElement(['Barangay','City','Province','National']),
             ]);
         }

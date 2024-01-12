@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AddMemberController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\RedeemController;
+use App\Http\Controllers\AddMemberController;
 use App\Http\Controllers\FrontPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,10 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/events', [EventsController::class, 'index'])->name('events.index');
+    Route::get('/event', [EventsController::class, 'getEvent'])->name('events.event');
 
     Route::get('/members', [MembersController::class, 'index'])->name('members.index');
     Route::post('/members/find', [MembersController::class, 'find'])->name('members.find');
