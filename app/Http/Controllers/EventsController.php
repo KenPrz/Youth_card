@@ -30,4 +30,9 @@ class EventsController extends Controller
             'event_date' => $this->misc->dateFormatter($event->event_date),
         ]);
     }
+
+    public function create(): View
+    {
+        return view('events.partials.create-event');
+    }
 }

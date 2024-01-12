@@ -23,7 +23,6 @@ class MembersController extends Controller
                 ->orWhere('youth_classification', 'like', '%' . $searchTerm . '%');
         }
         $members = $query->paginate(8);
-    
         return view('members.index', compact('members'));
     }
     

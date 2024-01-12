@@ -12,7 +12,7 @@
         </div>
         <div class="w-full">
             @foreach ($events as $event)
-                <form method="GET" action="/event">
+                <form method="GET" action="{{route('events.event')}}">
                     <button name="event_id" type="submit" value="{{$event->id}}"
                         class="w-full p-4 flex flex-col justify-start items-start text-start
                         bg-white border-b border-gray-200 hover:bg-slate-100 transition-colors duration-200">
