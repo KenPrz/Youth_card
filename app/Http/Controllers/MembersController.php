@@ -28,11 +28,30 @@ class MembersController extends Controller
     }
     
     
-    public function addMember(Request $request)
-    {
-        //Lagay mo dito yung logic ng pag add ng member
+    // public function addMember(Request $request)
+    // {
+    //     //Lagay mo dito yung logic ng pag add ng member
+    // }
+    // store ng data sa db
+    public function store(Request $request){
+        Member::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'gender' => $request->input('gender'),
+            'contact_number' => $request->input('contact_number'),
+            'birthday' => $request->input('birthday'),
+            'purok' => $request->input('purok'),
+            'youth_classification' => $request->input('youth_classification'),
+            'card_id' => $request->input('card_id'),
+            'age' => $request->input('age')
+        ]);
+        return redirect('/members');
     }
 
+    public function show($request){
+        $member = Member::find($request);
+        return view('members.show')->with('members', $member);
+    }
 
     public function edit(Request $request): View
     {
