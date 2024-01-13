@@ -35,4 +35,15 @@ class EventsController extends Controller
     {
         return view('events.partials.create-event');
     }
+
+    public function store(Request $request): View
+    {
+        dd($request->all());
+        // $event = new Event;
+        // $event->event_name = $request->event_name;
+        // $event->event_description = $request->event_description;
+        // $event->event_date = $request->event_date;
+        // $event->save();
+        // return view('events.partials.create-event');
+    }
 }
