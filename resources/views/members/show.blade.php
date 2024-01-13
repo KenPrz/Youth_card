@@ -9,7 +9,7 @@
                     <p class="card-text">Email : {{ $members->email }}</p>
                     <p class="card-text">Mobile : {{ $members->contact_number }}</p>
                     <p class="card-text">Purok : {{ $members->purok }}</p>
-                    <p class="card-text">Purok : {{ $members->youth_classification }}</p>
+                    <p class="card-text">Youth Classification : {{ $members->youth_classification }}</p>
                     <p class="card-text">Events Joined : 4 Events</p>
                     <p class="card-text">Points Earned : 1000 Points</p>
                     <p class="card-text">Date Added : {{ $members->created_at }}</p>

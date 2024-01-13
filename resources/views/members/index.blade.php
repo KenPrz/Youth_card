@@ -44,11 +44,12 @@
                                 class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
                                 
                             > <a href="{{ url('/members/' . $member->id) }}">View</a></button>  
-                          <button
+                            <button
                                 class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
-                                {{-- x-data=""
-                                x-on:click.prevent="$dispatch('open-modal', 'edit-user')" --}}
-                            >Edit</button>
+                                x-data=""
+                                x-on:click.prevent="$dispatch('open-modal', 'edit-user')">
+                            Edit
+                            </button>
                             <button
                                 class="text-sm text-white bg-red-500 hover:bg-red-600 px-2 py-1 rounded"
                                 x-data=""
@@ -65,14 +66,17 @@
                     <x-members.add-member-form />
                 </div>
             </x-modal>
-            <x-modal name="view-user" :show="$errors->userDeletion->isNotEmpty()" focusable>
+            {{-- <x-modal name="view-user" :show="$errors->userDeletion->isNotEmpty()" focusable>
               Show Profile
-            </x-modal>
+            </x-modal> --}}
             <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
                 Delete Account
             </x-modal>
             <x-modal name="edit-user" :show="$errors->userEdit->isNotEmpty()" focusable>
-                edit user
+                <div class="m-8">
+                    <div class="h4 mb-3 font-bold">Edit Youth Information</div>
+                    <x-members.edit-member-form />
+                </div>
             </x-modal>
         </x-table.table>
         <div class="mt-2">
