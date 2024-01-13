@@ -27,12 +27,6 @@ class MembersController extends Controller
         return view('members.index', compact('members'));
     }
     
-    
-    // public function addMember(Request $request)
-    // {
-    //     //Lagay mo dito yung logic ng pag add ng member
-    // }
-    // store ng data sa db
     public function store(Request $request){
         Member::create([
             'name' => $request->input('name'),
