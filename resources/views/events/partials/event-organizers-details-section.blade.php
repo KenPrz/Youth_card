@@ -25,53 +25,65 @@
             </thead>
             <tbody>
                 <tr class="role-row">
-                    <td>
-                        <x-text-input
+                    <td class="border">
+                        <input 
                             name="role[]"
                             type="text"
-                            class="w-full"
+                            class="w-full border-none focus:ring-0 focus:border-gray-300"
                             placeholder="Role"
                             required
                         />
                     </td>
-                    <td>
-                        <x-text-input
-                            name="name[]"
-                            type="text"
-                            class="w-full"
-                            placeholder="Full Name"
-                            required
-                        />
+                    <td class="border">
+                        <div class="w-full flex items-center justify-center">
+                            <button
+                                x-data=""
+                                x-on:click.prevent="$dispatch('open-modal', 'add-member-modal')"
+                                type="button" id="insert-user" class="text-blue-500 hover:text-blue-600 hover:text-decoration:underline transition-colors duration-200 font-semibold">
+                                Add Name
+                            </button>
+                        </div>
                     </td>
-                    <td>
-                        <x-text-input
+                    <td class="border">
+                        <input 
                             name="point-reward[]"
                             type="number"
-                            class="w-full"
+                            class="w-full border-none focus:ring-0 focus:border-gray-300"
                             placeholder="Point Reward"
                             required
-                        />
+                        >
                     </td>
-                    <td class="w-full flex items-center justify-center border">
-                        <button
-                            id="delete-role"
-                            class="delete-role flex justify-between bg-red-500 text-sm px-3 text-white p-2 rounded-md hover:bg-red-600 transition-colors duration-200">
-                            <img class="h-5 w-5 me-1" src="{{ asset('images/delete.svg') }}" alt="">
-                            <span>Delete</span>
-                        </button>
+                    <td class="border">
+                        <div class="flex items-center justify-center">
+                            <button
+                                id="delete-role"
+                                class="delete-role flex justify-between bg-red-500 text-sm px-3 text-white p-2 rounded-md hover:bg-red-600 transition-colors duration-200">
+                                <img class="h-5 w-5 me-1" src="{{ asset('images/delete.svg') }}" alt="">
+                                <span>Delete</span>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <x-modal name="add-member-modal" :show="$errors->addMember->isNotEmpty()" focusable>
+            @include('events.partials.add-member-modal')
+        </x-modal>
     </section>
 </div>
-
-<script>
-document.getElementById('add-role').addEventListener('click', function () {
-    var newRow = document.querySelector('.role-row').cloneNode(true);
-    newRow.querySelectorAll('input').forEach(function (input) {
-        input.value = '';
+<script type="module">
+    $(document).ready(function () {
+        $('#add-role').on('click', function () {
+            var newRow = $('.role-row:first').clone(true);
+            newRow.find('input').val('');
+            $('#roles-table tbody').append(newRow);
+        });
+        $(document).on('click', '#delete-role', function () {
+            $(this).closest('.role-row').remove();
+        });
+        $('#insert-user').on('click', function () {
+            var newRow = $('.user-row:first').clone(true);
+            console.log(newRow);
+        });
     });
-    document.querySelector('#roles-table tbody').appendChild(newRow);
-});
 </script>

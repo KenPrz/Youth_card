@@ -41,7 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/members/edit', [MembersController::class, 'edit'])->name('members.update');
     Route::delete('/members/delete', [MembersController::class, 'destroy'])->name('members.destroy');
 
-
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
 
     Route::post('addmember', [AddMemberController::class, 'store'])->name('store');

@@ -14,14 +14,12 @@
     </div>
     <div class="container flex w-full items-center">
         <div class="flex-1 pe-2">
-            <div class="mb-3">
-                <label for="event-description"
-                    class="form-label font-semibold">{{ __('Event Description') }}</label>
-                <textarea name="description" id="event-description" cols="30" rows="5" class="block mt-1 w-full"></textarea>
+            <div class="mb-6">
+                <label for="event-description" class="form-label font-semibold">{{ __('Event Description') }}</label>
+                <textarea name="description" id="event-description" cols="30" rows="5"
+                        class="mt-1 p-2 block w-full border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"></textarea>
                 @error('event-description')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
+                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
                 @enderror
             </div>
         </div>

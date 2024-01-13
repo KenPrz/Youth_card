@@ -5,7 +5,12 @@ use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Member;
 use App\Http\Controllers\MiscController;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Database\Eloquent\Casts\Json;
+use Illuminate\Http\JsonResponse;
+
 class EventsController extends Controller
 {
     private $misc;
@@ -45,5 +50,11 @@ class EventsController extends Controller
         // $event->event_date = $request->event_date;
         // $event->save();
         // return view('events.partials.create-event');
+    }
+
+    public function searchName(Request $request): JsonResponse
+    {
+        $members = Member::where('name', 'LIKE', '%' . $request->search . '%')->get();
+        return response()->json($members);
     }
 }
