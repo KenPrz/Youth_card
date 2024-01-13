@@ -40,12 +40,17 @@
                         <x-table.td>{{ $member->purok }}</x-table.td>
                         <x-table.td>{{ $member->youth_classification }}</x-table.td>
                         <x-table.td>
-                            <button class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"> <a
-                                    href="{{ url('/members/' . $member->id) }}">View</a></button>
-                            <button class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
+                          <button
+                                class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
+                                
+                            > <a href="{{ url('/members/' . $member->id) }}">View</a></button>  
+                          <button
+                                class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
                                 {{-- x-data=""
-                                x-on:click.prevent="$dispatch('open-modal', 'edit-user')" --}}>Edit</button>
-                            <button class="text-sm text-white bg-red-500 hover:bg-red-600 px-2 py-1 rounded"
+                                x-on:click.prevent="$dispatch('open-modal', 'edit-user')" --}}
+                            >Edit</button>
+                            <button
+                                class="text-sm text-white bg-red-500 hover:bg-red-600 px-2 py-1 rounded"
                                 x-data=""
                                 x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
                                 {{ __('Delete') }}
@@ -59,6 +64,9 @@
                     <div class="h4 mb-3 font-bold">Add Youth Member</div>
                     <x-members.add-member-form />
                 </div>
+            </x-modal>
+            <x-modal name="view-user" :show="$errors->userDeletion->isNotEmpty()" focusable>
+              Show Profile
             </x-modal>
             <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
                 Delete Account
