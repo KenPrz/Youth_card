@@ -43,13 +43,14 @@ class EventsController extends Controller
 
     public function store(Request $request): View
     {
-        dd($request->all());
-        // $event = new Event;
-        // $event->event_name = $request->event_name;
-        // $event->event_description = $request->event_description;
-        // $event->event_date = $request->event_date;
-        // $event->save();
-        // return view('events.partials.create-event');
+        $event = new Event;
+        $event->event_name = $request->event_name;
+        $event->event_description = $request->event_description;
+        $event->event_date = $request->event_date;
+        $event->start_time = $request->start_time;
+        $event->end_time = $request->end_time;
+        $event->save();
+        return view('events.partials.edit-event', compact('event'));
     }
 
     public function searchName(Request $request): JsonResponse

@@ -13,6 +13,8 @@ class Event extends Model
         'event_name',
         'event_description',
         'event_date',
+        'start_time',
+        'end_time',
         'event_level',
     ];
     

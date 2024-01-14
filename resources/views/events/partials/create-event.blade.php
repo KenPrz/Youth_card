@@ -11,9 +11,6 @@
                 <x-misc.card-component class="mt-5">
                     @include('events.partials.primary-event-details-section')
                 </x-misc.card-component>
-                <x-misc.card-component class="mt-5">
-                    @include('events.partials.event-organizers-details-section')
-                </x-misc.card-component>
                 <div class="flex item-center justify-end">
                     <button
                         type="submit"
