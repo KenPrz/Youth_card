@@ -3,17 +3,10 @@
     <form id="searchForm" class="flex" method="GET" action="{{ route('events.search-name') }}">
         @csrf
         <div class="flex border rounded-lg">
-            <input
-                id="searchInput"
-                name="search"
-                placeholder="Search Name"
-                class="w-full border-none focus:ring-0 focus:border-gray-300 rounded-s-md"
-                required
-            />
+            <input id="searchInput" name="search" placeholder="Search Name"
+                class="w-full border-none focus:ring-0 focus:border-gray-300 rounded-s-md" required />
             <div class="flex justify-end border-e rounded-lg">
-                <button
-                    type="button"
-                    id="searchButton"
+                <button type="button" id="searchButton"
                     class="flex justify-center items-center bg-blue-500 text-sm px-5 text-white h-full rounded-e-md hover:bg-blue-600 transition-colors duration-200">
                     <img class="h-5 w-5 me-1" src="{{ asset('images/search.svg') }}" alt="">
                     <span>Search</span>
@@ -32,7 +25,9 @@
                 </tr>
             </thead>
             <tbody>
-                
+                <div class="overflow-y-auto">
+
+                </div>
             </tbody>
         </table>
     </section>
@@ -48,7 +43,6 @@
 
     searchResultTable.style.display = 'none';
     searchWarning.style.display = 'none';
-
     // Add an event listener to the button
     document.getElementById('searchButton').addEventListener('click', function() {
         // Check if the input is empty
@@ -58,38 +52,57 @@
         } else {
             searchWarning.style.display = 'none';
             axios.get('api/search-name', {
-                params: {
-                    search: searchInput.value
-                }
-            })
-            .then(function (response) {
-                if(response.data.length === 0){
-                    searchWarning.style.display = 'block';
-                    searchWarning.innerHTML = 'No results found';
-                } else {
-                    // Clear existing rows in the table body
-                    tbody.innerHTML = '';
+                    params: {
+                        search: searchInput.value
+                    }
+                })
+                .then(function(response) {
+                    if (response.data.length === 0) {
+                        searchWarning.style.display = 'block';
+                        searchWarning.innerHTML = 'No results found';
+                    } else {
+                        // Clear existing rows in the table body
+                        tbody.innerHTML = '';
 
-                    // Iterate over the response data and append rows to the table
-                    response.data.forEach(member => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td class="border">${member.name}</td>
-                            <td class="border">${member.purok}</td>
+                        // Iterate over the response data and append rows to the table
+                        response.data.forEach(member => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
                             <td class="border">
-                                <!-- Add actions here if needed TODO-->
+                                <div class="flex items-center justify-center">
+                                    <span>${member.name}</span>
+                                </div>
+                            </td>
+                            <td class="border">
+                                <div class="flex items-center justify-center">
+                                    <span>${member.purok}</span>
+                                </div>
+                            </td>
+                            <td class="border">
+                                <div class="flex items-center justify-center">
+                                    <button
+                                        id="add-member"
+                                        type="button"
+                                        class="flex justify-center items-center text-blue-500 hover:text-blue-600 transition-colors duration-200">
+                                        Add
+                                    </button>
+                                </div>
                             </td>
                         `;
-                        tbody.appendChild(row);
-                    });
-
-                    // Display the table
-                    searchResultTable.style.display = 'block';
-                }
-            })
-            .catch(function (error) {
-                console.error('Error fetching data:', error);
-            });
+                            tbody.appendChild(row);
+                        });
+                        // Display the table
+                        searchResultTable.style.display = 'block';
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error fetching data:', error);
+                });
         }
     });
+
+    function clearTable() {
+        tbody.innerHTML = '';
+        searchResultTable.style.display = 'none';
+    }
 </script>
