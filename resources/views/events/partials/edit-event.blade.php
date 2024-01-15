@@ -11,6 +11,12 @@
             @method('PATCH')
             <x-misc.card-component class="mt-5">
                 {{-- @include('events.partials.edit-event-details-section') --}}
+                <h1>Event Name : {{$event->event_name}}</h1>
+                <h1>Event Description : {{$event->event_description}}</h1>
+                <h1>Event Date : {{$event->event_date}}</h1>
+                <h1>Start Time : {{$event->start_time}}</h1>
+                <h1>End Time : {{$event->end_time}}</h1>
+                <h1>ID: {{$event->id}}</h1>
             </x-misc.card-component>
             <div class="flex item-center justify-end">
                 <button

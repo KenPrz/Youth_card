@@ -12,7 +12,7 @@ class EventTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $numberOfEvents = 30;
+        $numberOfEvents = 2;
 
         for ($i = 0; $i < $numberOfEvents; $i++) {
 
@@ -25,7 +25,7 @@ class EventTableSeeder extends Seeder
                 'event_level' => fake()->randomElement(['Barangay','City','Province','National']),
             ]);            
         }
-        for ($i = 0; $i < 5 ; $i++) {
+        for ($i = 0; $i < 2 ; $i++) {
 
             Event::create([
                 'event_name' => fake()->sentence(3),

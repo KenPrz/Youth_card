@@ -10,6 +10,7 @@ use App\Http\Controllers\MiscController;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Redirect;
 
 class EventsController extends Controller
 {
@@ -41,7 +42,7 @@ class EventsController extends Controller
         return view('events.partials.create-event');
     }
 
-    public function store(Request $request): View
+    public function store(Request $request)
     {
         $event = new Event;
         $event->event_name = $request->event_name;
@@ -50,7 +51,7 @@ class EventsController extends Controller
         $event->start_time = $request->start_time;
         $event->end_time = $request->end_time;
         $event->save();
-        return view('events.partials.edit-event', compact('event'));
+        return redirect()->route('events.index');
     }
 
     public function searchName(Request $request): JsonResponse
