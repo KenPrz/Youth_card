@@ -1,6 +1,12 @@
 <div class="p-5">
-    <div class="mb-6 flex items-center justify-between">
-        <h1>List of Items</h1>
+    <div class="w-full mb-6 flex items-center justify-between">
+        <h1 class="font-semibold text-xl">List of Items</h1>
+        <a href="{{ route('redeem.create') }}"
+                class="flex justify-between bg-blue-500 text-sm px-3 text-white p-2 rounded-md hover:bg-blue-600 transition-colors duration-200"
+                >
+                <img class="h-5 w-5 me-1" src="{{asset('images/add-circle.svg')}}" alt="">
+            <span>Add Item</span>
+        </a>
     </div>
     <div class="container">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

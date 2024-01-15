@@ -1,6 +1,6 @@
-<div class="flex flex-col bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out h-full">
+<div class="border-2 flex flex-col bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out h-full">
     <section>
-        <img src="{{ $image }}" alt="{{ $itemName }}" class="w-full h-32 object-cover">
+        <img src="{{ url('storage/'.$image) }}" alt="{{ $itemName }}" class="w-full h-32 object-cover">
     </section>
     <section class="flex-grow p-4">
         <h2 class="text-xl font-semibold">{{ $itemName }}</h2>

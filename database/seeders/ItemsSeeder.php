@@ -12,7 +12,7 @@ class ItemsSeeder extends Seeder
      */
     public function run(): void
     {
-        $numberOfItems = 30;
+        $numberOfItems = 1000;
 
         for ($i = 0; $i < $numberOfItems; $i++) {
             Commodity::create([

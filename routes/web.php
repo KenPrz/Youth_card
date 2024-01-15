@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/members/delete', [MembersController::class, 'destroy'])->name('members.destroy');
 
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
+    Route::get('/item-create', [RedeemController::class, 'create'])->name('redeem.create');
+    Route::post('/item-create', [RedeemController::class, 'store'])->name('redeem.store');
 
     Route::post('addmember', [AddMemberController::class, 'store'])->name('store');
 });
