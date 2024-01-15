@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\View\View;
 
 class MembersController extends Controller
@@ -53,17 +54,31 @@ class MembersController extends Controller
         return view('members.show')->with('members', $member);
     }
 
-    public function edit(Request $request): View
+    public function edit($id)
     {
-        $member = Member::find($request->id);
+        $member = Member::find($id);
+    
+        if (!$member) {
+            // Handle the case where the member is not found (e.g., redirect or show an error)
+            return redirect()->route('members.index')->with('flash_message', 'Member not found');
+        }
+    
         return view('members.edit', compact('member'));
     }
-
-    public function destroy(Request $request): View
-    {
-        $member = Member::find($request->id);
-        $member->delete();
-        return view('members.index');
-    }
     
+    public function update(Request $request, $id)
+    {
+        $member = Member::find($id);
+        $input = $request->all();
+        $member->update($input);
+        return redirect('members')->with('flash_message', 'Youth Info Updated!');  
+
+        // return 'hello';
+    }
+
+    public function destroy($id)
+    {
+        Member::destroy($id);
+        return redirect('members')->with('flash_message', 'Youth Info Deleted!');  
+    }
 }

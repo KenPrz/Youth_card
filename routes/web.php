@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/addmember', [MembersController::class, 'store'])->name('store');
     Route::get('/members/{card_id}', [MembersController::class, 'show'])->name('members.show');
+    Route::get('/member/{id}/edit', [MembersController::class, 'update'])->name('members.edit');
 
     Route::resource('members', MembersController::class);
 });
