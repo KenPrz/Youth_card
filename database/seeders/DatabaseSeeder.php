@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             EventTableSeeder::class,
             CommodityTableSeeder::class,
             MemberPointsSeeder::class,
+            ItemsSeeder::class,
         ]);
     }
 }

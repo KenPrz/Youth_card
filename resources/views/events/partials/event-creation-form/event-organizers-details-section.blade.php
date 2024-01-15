@@ -16,7 +16,9 @@
                 </td>
                 <td class="border-2">
                     <div class="w-full flex justify-center items-center">
-                        <button 
+                        <button
+                            x-data=""
+                            x-on:click.prevent="$dispatch('open-modal', 'add-organizer')"
                             type="button"
                             class="font-semibold text-blue-500 hover:text-blue-600 transition-colors duration-200">
                             <span>Add Name</span>
@@ -50,12 +52,16 @@
         </button>
     </div>
 </div>
-
+    <x-modal id="search-modal" name="add-organizer" :show="$errors->addOrganizer->isNotEmpty()" focusable x-on:close-modal="closeModal">
+        @include('events.partials.event-creation-form.name-search')
+    </x-modal>
 <script>
     // Add event listener for adding roles
     document.getElementById('add-role-button').addEventListener('click', function () {
         addRoleRow();
     });
+
+    // Add event listener for adding names
 
     // Add event listener for deleting roles
     document.addEventListener('click', function (event) {
@@ -83,5 +89,9 @@
         if (tableBody.childElementCount > 1) {
             tableBody.removeChild(row);
         }
+    }
+
+    function getMemberName(){
+        console.log('clicked');
     }
 </script>
