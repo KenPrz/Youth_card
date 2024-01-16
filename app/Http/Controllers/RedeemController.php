@@ -28,6 +28,43 @@ class RedeemController extends Controller
         return view('redeem.index', compact('items'));
     }
 
+    public function edit(Request $request, $item_id): View
+    {
+        $item = Commodity::find($item_id);
+        return view('redeem.partials.item-edit.edit-item-form', compact('item'));
+    }
+
+    public function update(Request $request, $item_id)
+    {
+        $request->validate([
+            'item_name' => 'required|max:50',
+            'item_description' => 'required|max:255',
+            'required_points' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:0',
+        ]);
+        
+        if ($request->hasFile('image')) {
+            $imageName = time() . '_' . $request->image->getClientOriginalName();
+            $item = Commodity::find($item_id);
+            $item->update([
+                'item_name' => $request->item_name,
+                'item_description' => $request->item_description,
+                'required_points' => $request->required_points,
+                'quantity' => $request->quantity,
+                'image' => $request->image->storeAs('images', $imageName, 'public'),
+            ]);
+        }else{
+            $item = Commodity::find($item_id);
+            $item->update([
+                'item_name' => $request->item_name,
+                'item_description' => $request->item_description,
+                'required_points' => $request->required_points,
+                'quantity' => $request->quantity,
+            ]);
+        }
+        return redirect()->route('redeem.index')->with('success', 'Item updated successfully');
+    }
+
     /**
      * Create a new redemption.
      *
@@ -78,36 +115,21 @@ class RedeemController extends Controller
         return redirect()->route('redeem.index')
             ->with('success', 'Item created successfully.');
     }
-    
 
     /**
-     * Show the form for editing the specified resource.
+     * Delete a redeemed item.
      *
-     * @param  \App\Models\Commodity  $commodity
-     * @return \Illuminate\View\View
-     */
-    public function edit(Commodity $commodity): View
-    {
-        return view('redeem.partials.item-edit.item-edit', compact('commodity'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Commodity  $commodity
+     * @param  int  $item_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Commodity $commodity)
+    public function destroy($item_id)
     {
-        $request->validate([
-            'item_name' => 'required | max:50',
-            'item_description' => 'required | max:255',
-            'required_points' => 'required|numeric|min:0',
-            'quantity' => 'required|numeric|min:0',
-        ]);
-        $commodity->update($request->all());
-        return redirect()->route('redeem.index')
-            ->with('success', 'Item updated successfully');
+        $item = Commodity::find($item_id);
+        if ($item) {
+            $item->delete();
+            return redirect()->route('redeem.index')->with('success', 'Item deleted successfully');
+        } else {
+            return redirect()->route('redeem.index')->with('error', 'Item not found');
+        }
     }
 }

@@ -17,6 +17,7 @@
             @else
                 @foreach($items as $item)
                     <x-misc.item-card
+                        :itemID="$item->id"
                         :itemName="$item->item_name"
                         :itemDescription="$item->item_description"
                         :requiredPoints="$item->required_points"

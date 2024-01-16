@@ -42,9 +42,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/members/delete', [MembersController::class, 'destroy'])->name('members.destroy');
 
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
+    Route::get('/item-edit/{item_id}', [RedeemController::class, 'edit'])->name('get.item.edit');
+    Route::patch('/item-edit/{item_id}', [RedeemController::class, 'update'])->name('redeem.update');
     Route::get('/item-create', [RedeemController::class, 'create'])->name('redeem.create');
+    Route::delete('/item-delete/{item_id}', [RedeemController::class, 'destroy'])->name('redeem.destroy');
     Route::post('/item-create', [RedeemController::class, 'store'])->name('redeem.store');
-
     Route::post('addmember', [AddMemberController::class, 'store'])->name('store');
 });
 

@@ -11,14 +11,16 @@ class ItemCard extends Component
     /**
      * Create a new component instance.
      */
+    public int $itemID;
     public string $itemName;
     public $itemDescription;
     public int $requiredPoints;
     public int $quantity;
     public $image;
 
-    public function __construct(string $itemName, $itemDescription, int $requiredPoints, int $quantity, $image)
+    public function __construct(int $itemID, string $itemName, $itemDescription, int $requiredPoints, int $quantity, $image)
     {
+        $this->itemID = $itemID;
         $this->itemName = $itemName;
         $this->itemDescription = $itemDescription;
         $this->requiredPoints = $requiredPoints;
