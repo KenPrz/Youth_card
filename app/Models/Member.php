@@ -17,10 +17,11 @@ class Member extends Model
         'contact_number',
         'purok',
         'youth_classification',
-        'card_id'
+        'card_id',
+        'age'
     ];
 
-    protected $casts = [
-        'age' => 'integer',
-    ];
+    // protected $casts = [
+    //     'age' => 'integer',
+    // ];
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class MembersController extends Controller
@@ -28,7 +30,30 @@ class MembersController extends Controller
         return view('members.index', compact('members'));
     }
     
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        // Validation rules
+        $rules = [
+            'card_id' => ['required', Rule::unique('members')],
+            'name' => 'required',
+            'email' => ['required', 'email', Rule::unique('members')],
+        ];
+        $messages = [
+            'card_id.unique' => 'A member with the same card ID already exists.',
+            'email.unique' => 'A member with the same email already exists.',
+            // Add other custom error messages as needed
+        ];
+
+        // Validate the request data
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        // If validation fails, redirect back with error messages
+        if ($validator->fails()) {
+            return redirect('/members')
+                ->with('flash_message', 'Member Card ID or Email Already Exists');
+        }
+
+        // If validation passes, create the member
         Member::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -40,7 +65,8 @@ class MembersController extends Controller
             'card_id' => $request->input('card_id'),
             'age' => $request->input('age')
         ]);
-        return redirect('/members');
+
+        return redirect('/members')->with('flash_message', 'Member created successfully!');
     }
 
     public function show($card_id){
