@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('commodities', function (Blueprint $table) {
             $table->id();
             $table->string('item_name');
-            $table->string('item_description');
+            $table->string('item_description')->nullable();
             $table->integer('required_points');
             $table->integer('quantity');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

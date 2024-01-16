@@ -1,6 +1,10 @@
 <div class="border-2 flex flex-col bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out h-full">
     <section>
-        <img src="{{ url('storage/'.$image) }}" alt="{{ $itemName }}" class="w-full h-32 object-cover">
+        @if($image == null)
+            <img src="{{ asset('images/no-img.png') }}" alt="{{ $itemName }}" class="w-full h-32 object-cover">
+        @else
+            <img src="{{ url('storage/'.$image) }}" alt="{{ $itemName }}" class="w-full h-32 object-cover">
+        @endif
     </section>
     <section class="flex-grow p-4">
         <h2 class="text-xl font-semibold">{{ $itemName }}</h2>

@@ -1,9 +1,4 @@
 <x-app-layout>
-    @if(session('success'))
-        <div id="success-message" class="fixed top-0 right-0 m-4 bg-green-500 text-white p-2 rounded-md">
-            {{ session('success') }}
-        </div>
-    @endif
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             
@@ -32,18 +27,4 @@
         </div>
     </div>
 </x-app-layout>
-<script type="module">
-    $(document).ready(function() {
-        // Check if the success message exists and show it using jQuery
-        var successMessage = $('#success-message');
-        if (successMessage.length) {
-            successMessage.fadeIn('slow');
-
-            // Optionally, you can add a timeout to automatically hide the message after a few seconds
-            setTimeout(function() {
-                successMessage.fadeOut('slow');
-            }, 5000); // 5000 milliseconds (5 seconds)
-        }
-    });
-</script>
 

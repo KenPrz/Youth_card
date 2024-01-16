@@ -48,25 +48,37 @@ class RedeemController extends Controller
     {
         $request->validate([
             'item_name' => 'required|max:50',
-            'item_description' => 'required|max:255',
+            'item_description' => 'max:255',
             'required_points' => 'required|numeric|min:0',
             'quantity' => 'required|numeric|min:0',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
-        // Generate a unique filename for the image
-        $imageName = time() . '_' . $request->image->getClientOriginalName();
-        Commodity::create([
-            'item_name' => $request->item_name,
-            'item_description' => $request->item_description,
-            'required_points' => $request->required_points,
-            'quantity' => $request->quantity,
-            'image' => $request->image->storeAs('images', $imageName, 'public'),
-        ]);
+        // Check if an image is present in the request
+        if ($request->hasFile('image')) {
+            // Generate a unique filename for the image
+            $imageName = time() . '_' . $request->image->getClientOriginalName();
     
+            Commodity::create([
+                'item_name' => $request->item_name,
+                'item_description' => $request->item_description,
+                'required_points' => $request->required_points,
+                'quantity' => $request->quantity,
+                'image' => $request->image->storeAs('images', $imageName, 'public'),
+            ]);
+        } else {
+            // If no image is provided, create the Commodity without an image
+            Commodity::create([
+                'item_name' => $request->item_name,
+                'item_description' => $request->item_description,
+                'required_points' => $request->required_points,
+                'quantity' => $request->quantity,
+            ]);
+        }
         return redirect()->route('redeem.index')
             ->with('success', 'Item created successfully.');
     }
+    
 
     /**
      * Show the form for editing the specified resource.

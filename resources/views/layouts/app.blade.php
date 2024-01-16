@@ -17,20 +17,49 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            {{-- @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif --}}
-
-            <!-- Page Content -->
+            @if(session('success'))
+                <div id="success-message" class="fixed top-0 right-0 m-4 bg-green-500 text-white p-4 rounded-md flex items-center justify-between">
+                    <span>{{ session('success') }}</span>
+                    <button id="close-success" class="text-white focus:outline-none">x</button>
+                </div>
+            @elseif(session('error'))
+                <div id="error-message" class="fixed top-0 right-0 m-4 bg-red-500 text-white p-4 rounded-md flex items-center justify-between">
+                    <span>{{ session('error') }}</span>
+                    <button id="close-error" class="text-white focus:outline-none">x</button>
+                </div>
+            @endif
             <main>
                 {{ $slot }}
             </main>
         </div>
     </body>
 </html>
+<script type="module">
+    $(document).ready(function() {
+        function closeNotification(notificationId) {
+            $(notificationId).fadeOut('slow');
+        }
+
+        var successMessage = $('#success-message');
+        var errorMessage = $('#error-message');
+
+        if (successMessage.length) {
+            successMessage.fadeIn('slow');
+            $('#close-success').click(function() {
+                closeNotification('#success-message');
+            });
+            setTimeout(function() {
+                closeNotification('#success-message');
+            }, 5000);
+        }
+        if (errorMessage.length) {
+            errorMessage.fadeIn('slow');
+            $('#close-error').click(function() {
+                closeNotification('#error-message');
+            });
+            setTimeout(function() {
+                closeNotification('#error-message');
+            }, 5000);
+        }
+    });
+</script>
