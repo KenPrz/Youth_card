@@ -12,16 +12,18 @@ class ItemsSeeder extends Seeder
      */
     public function run(): void
     {
-        $numberOfItems = 1000;
+        $commodities = [
+            ['item_name' => '2 pcs Pancit Canton', 'item_description' => 'Description for Pancit Canton', 'required_points' => 30, 'quantity' => 1, 'image' => null],
+            ['item_name' => 'Educational Supplies', 'item_description' => 'Description for Educational Supplies', 'required_points' => 50, 'quantity' => 1, 'image' =>null],
+            ['item_name' => '1 kilo Rice', 'item_description' => 'Description for 1 kilo Rice', 'required_points' => 100, 'quantity' => 1, 'image' => null],
+            ['item_name' => '50 pesos load', 'item_description' => 'Description for 50 pesos load', 'required_points' => 125, 'quantity' => 1, 'image' => null],
+            ['item_name' => '1.5L Softdrink', 'item_description' => 'Description for 1.5L Softdrink', 'required_points' => 150, 'quantity' => 1, 'image' => null],
+            ['item_name' => '100 pesos GCASH', 'item_description' => 'Description for 100 pesos GCASH', 'required_points' => 200, 'quantity' => 1, 'image' => null],
+            ['item_name' => '1 whole Chicken', 'item_description' => 'Description for 1 whole Chicken', 'required_points' => 250, 'quantity' => 1, 'image' => null],
+        ];
 
-        for ($i = 0; $i < $numberOfItems; $i++) {
-            Commodity::create([
-                'item_name' => fake()->sentence(3),
-                'item_description' => fake()->sentence(6),
-                'required_points' => fake()->randomNumber(2, true),
-                'quantity' => fake()->randomNumber(3, true),
-                'image' => fake()->randomElement([fake()->imageUrl(640, 480, 'cats'), fake()->imageUrl(640, 480, 'abstract'), fake()->imageUrl(640, 480, 'animals'), fake()->imageUrl(640, 480, 'business'), fake()->imageUrl(640, 480, 'cats'), fake()->imageUrl(640, 480, 'city'), fake()->imageUrl(640, 480, 'food'), fake()->imageUrl(640, 480, 'nightlife'), fake()->imageUrl(640, 480, 'fashion'), fake()->imageUrl(640, 480, 'people'), fake()->imageUrl(640, 480, 'nature'), fake()->imageUrl(640, 480, 'sports'), fake()->imageUrl(640, 480, 'technics'), fake()->imageUrl(640, 480, 'transport')])
-            ]);
+        foreach ($commodities as $commodityData) {
+            Commodity::create($commodityData);
         }
     }
 }

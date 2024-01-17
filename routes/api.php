@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\RFIDController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/search-name', [EventsController::class, 'searchName'])->name('events.search-name');
+
+Route::post('/rfid-scan', [RFIDController::class, 'rfidScan'])->name('rfid.scan');
+Route::put('/redeem', [RFIDController::class, 'redeem'])->name('rfid.redeem');
