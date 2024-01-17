@@ -23,3 +23,5 @@ Route::get('/search-name', [EventsController::class, 'searchName'])->name('event
 
 Route::post('/rfid-scan', [RFIDController::class, 'rfidScan'])->name('rfid.scan');
 Route::put('/redeem', [RFIDController::class, 'redeem'])->name('rfid.redeem');
+
+Route::post('/check-rfid', [RFIDController::class, 'checkRFID'])->name('rfid.check-rfid');

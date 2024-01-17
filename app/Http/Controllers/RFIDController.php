@@ -23,4 +23,24 @@ class RFIDController extends Controller
     
         return response()->json($responseData);
     }
+
+    public function checkRFID(Request $request)
+    {
+
+        $request->validate([
+            'card_number' => 'required|numeric',
+        ]);
+        $member = Member::where('card_id', $request->card_number)->first();
+        if ($member) {
+            $responseData = [
+                'member' => $member,
+                'message' => 'success',
+            ];
+        } else {
+            $responseData = [
+                'message' => 'failed',
+            ];
+        }
+        return response()->json($responseData);
+    }
 }    

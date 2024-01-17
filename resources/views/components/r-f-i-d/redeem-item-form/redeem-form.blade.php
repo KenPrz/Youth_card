@@ -1,7 +1,7 @@
 <div class="max-w-md mx-auto p-8 rounded-md shadow-md">
     <h1 class="text-xl font-semibold text-gray-800 mb-4">Redeem: {{ __($itemName) }}</h1>
     <div x-data="{ formData: { item_id: '{{ $itemID }}' }, amount: amount }">
-        <form x-on:submit.prevent="submitForm" method="POST">
+        <form x-on:submit.prevent="submitForm" method="POST" action="{{route('redeem.item')}}">
             @csrf
             @method('POST')
             <div class="flex flex-col mb-4">

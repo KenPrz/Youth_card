@@ -8,7 +8,7 @@ use App\Http\Controllers\RedeemController;
 use App\Http\Controllers\AddMemberController;
 use App\Http\Controllers\FrontPageController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ItemRedemptionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/item-delete/{item_id}', [RedeemController::class, 'destroy'])->name('redeem.destroy');
     Route::post('/item-create', [RedeemController::class, 'store'])->name('redeem.store');
     Route::post('addmember', [AddMemberController::class, 'store'])->name('store');
+
+    Route::post('/redeem-item', [ItemRedemptionController::class, 'redeemItem'])->name('redeem.item');
 });
 
 require __DIR__.'/auth.php';

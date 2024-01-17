@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MembersTableSeeder::class,
             EventTableSeeder::class,
-            CommodityTableSeeder::class,
+            // CommodityTableSeeder::class,
             MemberPointsSeeder::class,
             ItemsSeeder::class,
         ]);

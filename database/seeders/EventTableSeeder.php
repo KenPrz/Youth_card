@@ -12,7 +12,7 @@ class EventTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $numberOfEvents = 2;
+        $numberOfEvents = 5;
 
         for ($i = 0; $i < $numberOfEvents; $i++) {
 
