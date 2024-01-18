@@ -17,6 +17,7 @@ class MembersController extends Controller
             $searchTerm = $request->search;
     
             $query->where('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('card_id', 'like', '%' . $searchTerm. '%')
                 ->orWhere('gender', 'like', '%' . $searchTerm . '%')
                 ->orWhere('age', 'like', '%' . $searchTerm . '%')
                 ->orWhere('birthday', 'like', '%' . $searchTerm . '%')
@@ -26,7 +27,6 @@ class MembersController extends Controller
                 ->orWhere('youth_classification', 'like', '%' . $searchTerm . '%');
         }
         $members = $query->paginate(8);
-    
         return view('members.index', compact('members'));
     }
     
@@ -49,7 +49,7 @@ class MembersController extends Controller
         // If validation fails, redirect back with error messages
         if ($validator->fails()) {
             return redirect('/members')
-                ->with('flash_message', 'Member Card ID or Email Already Exists');
+                ->with('error_mssg', 'Error! Youth Already Exists!');
         }
 
         // If validation passes, create the member
@@ -93,7 +93,7 @@ class MembersController extends Controller
         $member = Member::find($id);
         $input = $request->all();
         $member->update($input);
-        return redirect('members')->with('flash_message', 'Youth Info Updated!');  
+        return redirect('members')->with('success_edit', 'Youth Info Updated!');  
 
         // return 'hello';
     }
