@@ -41,7 +41,6 @@ class MembersController extends Controller
         $messages = [
             'card_id.unique' => 'A member with the same card ID already exists.',
             'email.unique' => 'A member with the same email already exists.',
-            // Add other custom error messages as needed
         ];
 
         // Validate the request data
@@ -73,10 +72,8 @@ class MembersController extends Controller
         $member = Member::find($card_id);
     
         if (!$member) {
-            // Handle the case where the member with the given $card_id is not found
             abort(404);
         }
-
         return view('members.show')->with('members', $member);
     }
 
@@ -85,7 +82,6 @@ class MembersController extends Controller
         $member = Member::find($id);
     
         if (!$member) {
-            // Handle the case where the member is not found (e.g., redirect or show an error)
             return redirect()->route('members.index')->with('flash_message', 'Member not found');
         }
     
