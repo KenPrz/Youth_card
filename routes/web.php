@@ -5,11 +5,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\RedeemController;
-use App\Http\Controllers\AddMemberController;
+use App\Http\Controllers\MemberPointsController;
 use App\Http\Controllers\FrontPageController;
 use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemRedemptionController;
+use App\Models\MemberPoints;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +49,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/addmember', [MembersController::class, 'store'])->name('store');
     Route::get('/members/{card_id}', [MembersController::class, 'show'])->name('members.show');
     Route::get('/member/{id}/edit', [MembersController::class, 'update'])->name('members.edit');
+
+    // Add manual points to youth member
+    Route::post('/addPoints', [MemberPointsController::class, 'index']);
 
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
     Route::get('/item-edit/{item_id}', [RedeemController::class, 'edit'])->name('get.item.edit');
