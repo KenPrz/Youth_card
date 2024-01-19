@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex item-center justify-between mb-5">
+            <div class="p-4 bg-white overflow-hidden shadow-sm sm:rounded-lg flex item-center justify-between mb-5">
                 <a href="{{ route('events.index') }}" class="flex justify-between bg-blue-500 text-sm px-3 text-white p-2 rounded-md hover:bg-blue-600 transition-colors duration-200">
                     <img class="h-5 w-5 me-1" src="{{ asset('images/back-white.svg') }}" alt="">
                     <span>Back</span>

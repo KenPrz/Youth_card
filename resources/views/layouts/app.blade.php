@@ -32,7 +32,12 @@
                 {{ $slot }}
             </main>
         </div>
+        <footer class="text-center text-gray-500 mt-4 pb-2">
+            <p>This site is currently under development.</p>
+            <p>Developed by <a href="https://github.com/KenPrz" target="_blank" class="text-blue-500">KenPrz</a> and <a href="https://github.com/0roc4n" target="_blank" class="text-blue-500">0roc4n</a>.</p>
+        </footer>
     </body>
+
 </html>
 <script type="module">
     $(document).ready(function() {
