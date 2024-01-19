@@ -1,9 +1,9 @@
 <div class="container p-4">   
      <div class="points">
         <div class="where text-center font-semibold"><h5>Add Points</h5></div>
-        <form action="{{ url('addPoints') }}" class="" method="POST">
+        <form action="{{ route('updatePoints', ['id' => $members->id]) }}" class="" method="POST">
             @csrf
-           
+           @method("PATCH")
             <div class="nameOfRecieptient mt-4">
                 <label for="name" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Add Points to:</label>
                 <h5>{{ $members->id }}</h5>

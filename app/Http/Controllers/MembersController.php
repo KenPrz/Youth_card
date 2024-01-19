@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Models\MemberPoints;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -71,10 +72,12 @@ class MembersController extends Controller
     public function show($card_id){
         $member = Member::find($card_id);
     
-        if (!$member) {
+        if (!$member) { 
             abort(404);
         }
-        return view('members.show')->with('members', $member);
+        $points = MemberPoints::where('member_id', $member->id)->first();
+
+        return view('members.show')->with(['members' => $member, 'points' => $points]);
     }
 
     public function edit($id)

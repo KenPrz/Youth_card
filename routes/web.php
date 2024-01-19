@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/member/{id}/edit', [MembersController::class, 'update'])->name('members.edit');
 
     // Add manual points to youth member
-    Route::post('/addPoints', [MemberPointsController::class, 'index']);
+    Route::patch('/updatePoints/{id}', [MemberPointsController::class, 'update'])->name('updatePoints');
 
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
     Route::get('/item-edit/{item_id}', [RedeemController::class, 'edit'])->name('get.item.edit');
