@@ -31,10 +31,7 @@ class EventsController extends Controller
     {
         $event = Event::where('id', $request->event_id)->first();
         // return view('events.event', compact('event'));
-        return view('events.partials.event', ['event_title' => $event->event_name,
-            'event_description' => $event->event_description,
-            'event_date' => $this->misc->dateFormatter($event->event_date),
-        ]);
+        return view('events.partials.event', compact('event'));
     }
 
     public function create(): View
@@ -53,6 +50,13 @@ class EventsController extends Controller
         $event->save();
         return redirect()->route('events.index');
     }
+
+    public function edit(Request $request): View
+    {
+        $event = Event::where('id', $request->event_id)->first();
+        return view('events.partials.edit-event', compact('event'));
+    }
+
 
     public function searchName(Request $request): JsonResponse
     {
