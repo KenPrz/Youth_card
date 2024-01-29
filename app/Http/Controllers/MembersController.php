@@ -35,7 +35,6 @@ class MembersController extends Controller
     {
         // Validation rules
         $rules = [
-            'card_id' => ['required', Rule::unique('members')],
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('members')],
         ];
@@ -54,6 +53,7 @@ class MembersController extends Controller
         }
 
         // If validation passes, create the member
+        
         Member::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -68,6 +68,7 @@ class MembersController extends Controller
 
         return redirect('/members')->with('flash_message', 'Member created successfully!');
     }
+    
 
     public function show($card_id){
         $member = Member::find($card_id);
@@ -77,7 +78,7 @@ class MembersController extends Controller
         }
         $points = MemberPoints::where('member_id', $member->id)->first();
 
-        return view('members.show')->with(['members' => $member, 'points' => $points]);
+        return view('members.show', compact('card_id'))->with(['members' => $member, 'points' => $points]);
     }
 
     public function edit($id)

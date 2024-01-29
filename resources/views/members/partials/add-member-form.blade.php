@@ -8,7 +8,7 @@
             </label>
             <input name="card_id"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-first-name" type="text" placeholder="########">
+                id="grid-first-name" type="text" value="{{ $rfidData }}">
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">

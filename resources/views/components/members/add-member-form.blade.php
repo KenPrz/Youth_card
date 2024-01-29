@@ -8,7 +8,7 @@
             </label>
             <input name="card_id"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-first-name" type="number" placeholder="########">
+                id="card_id" type="text" placeholder="########"  required>
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
@@ -49,7 +49,7 @@
             </label>
             <input name="age" required name="contact_number"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-city" type="text" placeholder="+639********">
+                id="grid-city" type="text" placeholder="">
         </div>
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -130,3 +130,16 @@
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
     </div>
 </form>
+
+<script>
+    // Listen for RFID data sent from NodeMCU
+    setInterval(function() {
+        fetch('/api/test')
+            .then(response => response.json())
+            .then(data => {
+                // Update the value of the card_id input field
+                document.getElementById('card_id').value = data['RFID Result'];
+            })
+            .catch(error => console.error('Error:', error));
+    }, 1000); // Update every second (adjust as needed)
+</script>
