@@ -30,20 +30,18 @@ class NodeMCUController extends Controller
 
     public function handleRFID(Request $request)
     {
-        // Get the RFID data from the request
+        // listen form nodemcu trans data
         $rfidData = $request->input('rfid');
 
-        // Check if there's an existing RFID result in the database
+        // overwrte tayo sa db
         $existingResult = RFIDResult::latest()->first();
-
-        // If there's an existing result, update it; otherwise, create a new one
         if ($existingResult) {
             $existingResult->update(['rfid' => $rfidData]);
         } else {
             $result = RFIDResult::create(['rfid' => $rfidData]);
         }
 
-        // Return a JSON response indicating successful receipt of RFID data
+        // for postman chcek if goods
         return response()->json([
             'RFID Result' => $rfidData,
             'message' => 'RFID Result Received'
