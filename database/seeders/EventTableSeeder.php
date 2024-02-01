@@ -19,9 +19,8 @@ class EventTableSeeder extends Seeder
             Event::create([
                 'event_name' => $this->generateEventName(),
                 'event_description' => $this->generateEventDescription(),
-                'event_date' => fake()->dateTimeBetween('-1 year', '+1 year')->format('Y-m-d'),
-                'start_time' => fake()->time('H:i:s'),
-                'end_time' => fake()->time('H:i:s'),
+                'event_start'=> fake()->dateTimeBetween('-1 month', '+1 month'),
+                'event_end'=> fake()->dateTimeBetween('-1 month', '+1 month'),
                 'event_level' => fake()->randomElement(['Barangay', 'City', 'Province', 'National']),
             ]);
         }
@@ -31,9 +30,8 @@ class EventTableSeeder extends Seeder
             Event::create([
                 'event_name' => $this->generateEventName(),
                 'event_description' => $this->generateEventDescription(),
-                'event_date' => now()->format('Y-m-d'),
-                'start_time' => fake()->time('H:i:s'),
-                'end_time' => fake()->time('H:i:s'),
+                'event_start'=> now()->format('Y-m-d H:i:s'),
+                'event_end'=> now()->addHours(2)->format('Y-m-d H:i:s'),
                 'event_level' => fake()->randomElement(['Barangay', 'City', 'Province', 'National']),
             ]);
         }

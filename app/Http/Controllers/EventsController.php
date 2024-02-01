@@ -21,9 +21,9 @@ class EventsController extends Controller
     }
     public function index(): View
     {
-        $eventsToday = Event::whereDate('event_date', Carbon::today())->paginate(3);
-        $upcomingEvents = Event::where('event_date', '>', Carbon::today())->paginate(3);
-        $pastEvents = Event::where('event_date', '<', Carbon::today())->paginate(2);
+        $eventsToday = Event::whereDate('event_start', Carbon::today())->paginate(3);   
+        $upcomingEvents = Event::whereDate('event_start', '>', Carbon::today())->paginate(3);
+        $pastEvents = Event::whereDate('event_end', '<', Carbon::today())->paginate(2);
         return view('events.index', compact('eventsToday','upcomingEvents', 'pastEvents'));
     }
 
@@ -56,7 +56,6 @@ class EventsController extends Controller
         $event = Event::where('id', $request->event_id)->first();
         return view('events.partials.edit-event', compact('event'));
     }
-
 
     public function searchName(Request $request): JsonResponse
     {
