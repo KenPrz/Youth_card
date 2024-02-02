@@ -62,4 +62,12 @@ class EventsController extends Controller
         $members = Member::where('name', 'LIKE', '%' . $request->search . '%')->get();
         return response()->json($members);
     }
+
+    public function destroy(Request $request, $event_id)
+        {
+        // dd($request->all());
+        $event = Event::where('id', $event_id)->first();
+        $event->delete();
+        return redirect()->route('events.index');
+    }
 }

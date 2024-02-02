@@ -60,10 +60,6 @@
     document.getElementById('add-role-button').addEventListener('click', function () {
         addRoleRow();
     });
-
-    // Add event listener for adding names
-
-    // Add event listener for deleting roles
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('delete-role-button')) {
             deleteRoleRow(event.target.closest('.organizer-row'));

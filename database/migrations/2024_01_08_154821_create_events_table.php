@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('event_end');
             $table->enum('event_level', ['Barangay','City','Province','National']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

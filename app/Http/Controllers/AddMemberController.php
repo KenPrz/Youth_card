@@ -10,7 +10,6 @@ class AddMemberController extends Controller
     public function index(){
         return 'helllo';
     }
-   
 
     public function store(Request $request){
         Member::create([

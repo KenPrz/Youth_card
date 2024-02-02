@@ -15,13 +15,19 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">
+                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index') 
+                    || request()->routeIS('events.event')
+                    || request()->routeIS('events.create')
+                    ">
                         {{ __('Events') }}
                     </x-nav-link>
                     <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.index')">
                         {{ __('Members') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('redeem.index')" :active="request()->routeIs('redeem.index')">
+                    <x-nav-link :href="route('redeem.index')" :active="request()->routeIs('redeem.index')
+                    || request()->routeIs('get.item.edit')
+                    || request()->routeIs('redeem.create')
+                    ">
                         {{ __('Redeem') }}
                     </x-nav-link>
                 </div>
@@ -50,7 +56,6 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">

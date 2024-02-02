@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/event-create', [EventsController::class, 'create'])->name('events.create');
     Route::post('/event-create', [EventsController::class, 'store'])->name('events.store');
+    Route::delete('/events/{event_id}', [EventsController::class, 'destroy'])->name('event.destroy');
+    
 
     Route::get('/members', [MembersController::class, 'index'])->name('members.index');
     Route::post('/members/find', [MembersController::class, 'find'])->name('members.find');

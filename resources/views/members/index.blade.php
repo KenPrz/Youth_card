@@ -8,7 +8,6 @@
             <div class="flex w-full bg-white overflow-hidden shadow-sm sm:rounded-lg my-5">
                 <div class="flex-1">
                     <form class="flex justify-start p-4 items-center" method="GET" action="{{ route('members.index') }}">
-                        @csrf
                         <x-text-input id="search" name="search" placeholder="Search..."/>
                         <button class="bg-secondary text-white p-2 rounded-md ms-2 hover:bg-secondary_hover transition-colors duration-200" type="submit">Search</button>
                     </form>
