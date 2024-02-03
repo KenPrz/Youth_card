@@ -5,10 +5,10 @@
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name">
                 Youth RFID
-            </label>
+            </label>    
             <input name="card_id"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="card_id" type="text" placeholder="########"  required>
+                id="card_id" type="text" placeholder="########"  required>   
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
@@ -29,7 +29,7 @@
             </label>
             <input required name="email"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-last-name" type="email" placeholder="">
+                id="grid-email" type="email" placeholder="">
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-2">
@@ -40,7 +40,7 @@
             </label>
             <input required name="contact_number"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-city" type="text" placeholder="+639********">
+                id="grid-contact" type="text" placeholder="+639********">
         </div>
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -49,7 +49,7 @@
             </label>
             <input name="age" required name="contact_number"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-city" type="text" placeholder="">
+                id="grid-age" type="text" placeholder="">
         </div>
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -58,7 +58,7 @@
             </label>
             <input required name="birthday"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-zip" type="date" placeholder="90210">
+                id="grid-bd" type="date" placeholder="90210">
         </div>
 
     </div>
@@ -70,7 +70,7 @@
             </label>
             <input required name="gender"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-city" type="text" placeholder="">
+                id="grid-gender" type="text" placeholder="">
         </div>
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -80,7 +80,7 @@
             <div class="relative">
                 <select name="purok"
                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-state">
+                    id="grid-prk">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -107,7 +107,7 @@
             <div class="relative">
                 <select name="youth_classification"
                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-state">
+                    id="grid-yclass">
                     <option>In-School Youth</option>
                     <option>Out-of-School</option>
                     <option>Working Youth</option>
@@ -132,14 +132,5 @@
 </form>
 
 <script>
-    // Listen for RFID data sent from NodeMCU
-    setInterval(function() {
-        fetch('/api/test')
-            .then(response => response.json())
-            .then(data => {
-                // Update the value of the card_id input field
-                document.getElementById('card_id').value = data['RFID Result'];
-            })
-            .catch(error => console.error('Error:', error));
-    }, 1000); // Update every second (adjust as needed)
+    
 </script>

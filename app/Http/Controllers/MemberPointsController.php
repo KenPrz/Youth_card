@@ -28,7 +28,7 @@ class MemberPointsController extends Controller
         $member = MemberPoints::find($id);
 
         if (!$member) {
-            return redirect()->back()->with('flash_message', 'Member not found');
+            return redirect()->back()->with('error_points', 'error adding points');
         }  
         $oldpoints = $member->points;
         $newPoints = $request->input('points');

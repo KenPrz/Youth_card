@@ -20,12 +20,16 @@ class NodeMCUController extends Controller
         } else {
             $rfidData = null; // Set default value if no result is found
         }
-
-        // Return the RFID data as JSON response
+        
+        $csrfToken = csrf_token();
+        //Return the RFID data as JSON response
         return response()->json([
             'RFID Result' => $rfidData,
-            'message' => 'RFID Result Received'
+            'message' => 'RFID Result Received',
+            '_token' => $csrfToken 
         ], 200);
+        
+        
     }
 
     public function handleRFID(Request $request)

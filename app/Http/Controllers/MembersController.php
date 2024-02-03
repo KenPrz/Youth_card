@@ -54,7 +54,7 @@ class MembersController extends Controller
 
         // If validation passes, create the member
         
-        Member::create([
+        $member = Member::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'gender' => $request->input('gender'),
@@ -64,6 +64,10 @@ class MembersController extends Controller
             'youth_classification' => $request->input('youth_classification'),
             'card_id' => $request->input('card_id'),
             'age' => $request->input('age')
+        ]);
+        MemberPoints::create([
+            'member_id' => $member->id,
+            'points' => 0, // You can set initial points to 0 or any default value
         ]);
 
         return redirect('/members')->with('flash_message', 'Member created successfully!');

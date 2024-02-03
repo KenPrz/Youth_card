@@ -131,16 +131,7 @@
                 </div>
                 
                 <div class="grid grid-rows-2 grid-flow-col gap-4 ">
-                    <div class="row-start row-span-2">
-                        <div class="text-center px-4 py-2 mt-2">
-                            <button type=""
-                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                <a href="/members" class="">
-                                    Go back
-                                </a>
-                            </button>
-                        </div>
-                    </div>
+                    
                     <div class="row-end-3 row-span-2 ">
                         <div class="text-center px-4 py-2 mt-2">
                             <button type="submit"
@@ -152,6 +143,16 @@
                     
                   </div>
             </form>
+            <div class="row-start row-span-2">
+                <div class="text-center px-4 py-2 mt-2">
+                    <button type=""
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="/members" class="">
+                            Go back
+                        </a>
+                    </button>
+                </div>
+            </div>
         @else
             <p>Member not found.</p>
         @endif
