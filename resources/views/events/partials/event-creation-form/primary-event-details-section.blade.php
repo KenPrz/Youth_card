@@ -35,29 +35,20 @@
             </div>
         </div>
         <div class="flex-1 ps-2">
-            <div class="mb-3">
-                <label for="event_date" class="form-label font-semibold">{{ __('Event Date') }}</label>
-                <x-text-input id="event_date" class="block mt-1 w-full" type="date" name="event_date" :value="old('event_date')" required autofocus />
-                @error('event_date')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="mb-3 flex">
-                <div class="flex-1 pe-2">
-                    <label for="start_time" class="form-label font-semibold">{{ __('Start Time') }}</label>
-                    <x-text-input id="start_time" class="block mt-1 w-full" type="time" name="start_time" :value="old('start_time')" required autofocus />
-                    @error('start_time')
+            <div class="mb-3 flex flex-col">
+                <div class="flex-1">
+                    <label for="start_datetime" class="form-label font-semibold">{{ __('Start Date and Time') }}</label>
+                    <x-text-input id="start_datetime" class="block mt-1 w-full" type="datetime-local" name="start_datetime" :value="old('start_datetime')" required autofocus />
+                    @error('start_datetime')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
-                <div class="flex-1 ps-2">
-                    <label for="end_time" class="form-label font-semibold">{{ __('End Time') }}</label>
-                    <x-text-input id="end_time" class="block mt-1 w-full" type="time" name="end_time" :value="old('end_time')" required autofocus />
-                    @error('end_time')
+                <div class="flex-1 mt-2">
+                    <label for="end_datetime" class="form-label font-semibold">{{ __('End Date and Time') }}</label>
+                    <x-text-input id="end_datetime" class="block mt-1 w-full" type="datetime-local" name="end_datetime" :value="old('end_datetime')" required autofocus />
+                    @error('end_datetime')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
