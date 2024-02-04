@@ -52,7 +52,7 @@
         </button>
     </div>
 </div>
-    <x-modal id="search-modal" name="add-organizer" :show="$errors->addOrganizer->isNotEmpty()" focusable x-on:close-modal="closeModal">
+    <x-modal :maxWidth="'sm'" id="search-modal" name="add-organizer" :show="$errors->addOrganizer->isNotEmpty()" focusable x-on:close-modal="closeModal">
         @include('events.partials.event-creation-form.name-search')
     </x-modal>
 <script>
