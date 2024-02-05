@@ -19,9 +19,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         User::create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('test@example.com'),
+            'name' => 'Root User',
+            'email' => 'root@email.com',
+            'password' => bcrypt('root@email.com'),
+            'role' => 'root',
         ]);
         $this->call([
             MembersTableSeeder::class,

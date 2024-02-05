@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Validator;
 class RegisteredUserController extends Controller
 {
     /**
@@ -20,6 +20,24 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+            return view('auth.verify-root-account');
+    }
+
+    public function verifyRootAccount(Request $request)
+    {
+        
+        $request->validate([
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'exists:'.User::class],
+            'password' => ['required', 'string'],
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        if ($user->role != 'root') {
+            return back()->withErrors(['email' => 'The provided email is not a root account.']);
+        }
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors(['password' => 'The provided password is incorrect.']);
+        }
         return view('auth.register');
     }
 
