@@ -23,4 +23,9 @@ class Member extends Model
     protected $casts = [
         'age' => 'integer',
     ];
+
+    public function points()
+    {
+        return $this->hasOne(MemberPoints::class);
+    }
 }

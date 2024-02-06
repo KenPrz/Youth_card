@@ -1,5 +1,6 @@
 
 <x-guest-layout>
+    <h1 class="text-lg font-bold mb-3 text-center">Login Account</h1>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     
