@@ -132,5 +132,26 @@
 </form>
 
 <script>
-    
+    function fetchLatestRFIDData() {
+        fetch('/api/test') // Ensure the correct endpoint is used here
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update the form fields with the latest RFID data
+                document.getElementById('card_id').value = data['RFID Result'];
+                // Update other form fields as needed
+            })
+            .catch(error => {
+                console.error('Error fetching latest RFID data:', error);
+            });
+    }
+
+    // Fetch the latest RFID data every 5 seconds
+    setInterval(fetchLatestRFIDData, 5000);
+    console.log(data);
+
 </script>
