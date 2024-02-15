@@ -19,7 +19,7 @@
             </label>
             <input required name="name"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-first-name" type="text" placeholder="">
+                id="grid-first-name" type="text">
             <p class="text-red-500 text-xs italic">Please fill out this field.</p>
         </div>
         <div class="w-full md:w-1/2 px-3">
@@ -29,7 +29,7 @@
             </label>
             <input required name="email"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-email" type="email" placeholder="">
+                id="grid-email" type="email">
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-2">
