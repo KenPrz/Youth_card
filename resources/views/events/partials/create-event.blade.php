@@ -10,7 +10,7 @@
                 @csrf
                 <x-misc.card-component class="mt-5" id="primary-event-details-section">
                     @include('events.partials.event-creation-form.primary-event-details-section')
-                </x-misc.card-component>
+                </x-misc.card-component> 
                 <x-misc.card-component class="mt-5" id="event-organizers-details-section">
                     @include('events.partials.event-creation-form.event-organizers-details-section')
                 </x-misc.card-component>

@@ -52,7 +52,7 @@
         </button>
     </div>
 </div>
-    <x-modal id="search-modal" name="add-organizer" :show="$errors->addOrganizer->isNotEmpty()" focusable x-on:close-modal="closeModal">
+    <x-modal :maxWidth="'sm'" id="search-modal" name="add-organizer" :show="$errors->addOrganizer->isNotEmpty()" focusable x-on:close-modal="closeModal">
         @include('events.partials.event-creation-form.name-search')
     </x-modal>
 <script>
@@ -60,10 +60,6 @@
     document.getElementById('add-role-button').addEventListener('click', function () {
         addRoleRow();
     });
-
-    // Add event listener for adding names
-
-    // Add event listener for deleting roles
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('delete-role-button')) {
             deleteRoleRow(event.target.closest('.organizer-row'));

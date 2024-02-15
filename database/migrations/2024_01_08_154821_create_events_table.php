@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('event_name');
             $table->string('event_description');
-            $table->date('event_date');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->dateTime('event_start');
+            $table->dateTime('event_end');
             $table->enum('event_level', ['Barangay','City','Province','National']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

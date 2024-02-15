@@ -21,9 +21,9 @@ class EventsController extends Controller
     }
     public function index(): View
     {
-        $eventsToday = Event::whereDate('event_date', Carbon::today())->paginate(3);
-        $upcomingEvents = Event::where('event_date', '>', Carbon::today())->paginate(3);
-        $pastEvents = Event::where('event_date', '<', Carbon::today())->paginate(2);
+        $eventsToday = Event::whereDate('event_start', Carbon::today())->paginate(3);   
+        $upcomingEvents = Event::whereDate('event_start', '>', Carbon::today())->paginate(3);
+        $pastEvents = Event::whereDate('event_end', '<', Carbon::today())->paginate(2);
         return view('events.index', compact('eventsToday','upcomingEvents', 'pastEvents'));
     }
 
@@ -31,10 +31,7 @@ class EventsController extends Controller
     {
         $event = Event::where('id', $request->event_id)->first();
         // return view('events.event', compact('event'));
-        return view('events.partials.event', ['event_title' => $event->event_name,
-            'event_description' => $event->event_description,
-            'event_date' => $this->misc->dateFormatter($event->event_date),
-        ]);
+        return view('events.partials.event', compact('event'));
     }
 
     public function create(): View
@@ -54,9 +51,23 @@ class EventsController extends Controller
         return redirect()->route('events.index');
     }
 
+    public function edit(Request $request): View
+    {
+        $event = Event::where('id', $request->event_id)->first();
+        return view('events.partials.edit-event', compact('event'));
+    }
+
     public function searchName(Request $request): JsonResponse
     {
         $members = Member::where('name', 'LIKE', '%' . $request->search . '%')->get();
         return response()->json($members);
+    }
+
+    public function destroy(Request $request, $event_id)
+        {
+        // dd($request->all());
+        $event = Event::where('id', $event_id)->first();
+        $event->delete();
+        return redirect()->route('events.index');
     }
 }

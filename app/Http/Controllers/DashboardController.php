@@ -14,8 +14,8 @@ class DashboardController extends Controller
     public function index()
     {
         $members = Member::count();
-        $eventsToday = Event::whereDate('event_date', today())->paginate(3);
-        $upcomingEvents = Event::whereDate('event_date', '>', today())->paginate(3);
+        $eventsToday = Event::whereDate('event_start', today())->paginate(3);
+        $upcomingEvents = Event::whereDate('event_end', '>', today())->paginate(3);
         $topMembers = MemberPoints::with('member')->orderBy('points', 'desc')->take(5)->get();
         return view('dashboard', compact('members', 'eventsToday','upcomingEvents', 'topMembers'));
     }

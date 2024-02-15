@@ -20,7 +20,7 @@
             </x-misc.card-component>
             <x-event.event-lister :events="$eventsToday" :title="'Events Today'" :nullTitle="'No Events Today'"/>
             <x-event.event-lister :events="$upcomingEvents" :title="'Upcoming Events'" :nullTitle="'No Upcoming Events'"/>
-            <x-event.event-lister :events="$pastEvents" :title="'Past Events'" :nullTitle="'No Events Today'"/>
+            <x-event.event-lister :events="$pastEvents" :title="'Past Events'" :nullTitle="'No Past Events'"/>
         </div>
     </div>
 </x-app-layout>

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-
+use Illuminate\Support\Facades\Validator;
 class RegisteredUserController extends Controller
 {
     /**
@@ -20,7 +20,23 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+            return view('auth.verify-root-account');
+    }
+
+    public function verifyRootAccount(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'exists:'.User::class],
+            'password' => ['required', 'string'],
+        ]);
+        $user = User::where('email', $request->email)->first();
+        if ($user->role != 'root') {
+            return back()->withErrors(['email' => 'The provided email is not a root account.']);
+        }
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors(['password' => 'The provided password is incorrect.']);
+        }
+        return view('auth.register')->with('success', 'Root account verified. Please fill up the form below to create an admin account.');
     }
 
     /**
@@ -28,14 +44,16 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        if ($validator->fails()) {
+            return view('auth.register', ['errors' => $validator->errors()]);
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
