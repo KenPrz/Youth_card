@@ -14,7 +14,10 @@
             <div class="container flex">
                 <div class="flex flex-col w-3/4">
                     @if ($eventsToday->count()!=0)
-                        <x-event.event-lister :events="$eventsToday" :title="'Events Today'" :nullTitle="'No Events Today'"/>
+                        <x-event.event-lister 
+                            :events="$eventsToday" 
+                            :title="'Events Today'" 
+                            :nullTitle="'No Events Today'"/>
                     @else
                         <x-event.event-lister :events="$upcomingEvents" :title="'Upcoming Events'" :nullTitle="'No Upcoming Events'"/>
                     @endif
