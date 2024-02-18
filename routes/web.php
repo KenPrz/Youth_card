@@ -5,10 +5,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\RedeemController;
-use App\Http\Controllers\AddMemberController;
+use App\Http\Controllers\MemberPointsController;
 use App\Http\Controllers\FrontPageController;
+use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemRedemptionController;
+use App\Models\MemberPoints;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,14 +49,26 @@ Route::middleware('auth')->group(function () {
     Route::delete('/members/delete', [MembersController::class, 'destroy'])->name('members.destroy');
 
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
+
+    Route::post('/addmember', [MembersController::class, 'store'])->name('store');
+    Route::get('/members/{card_id}', [MembersController::class, 'show'])->name('members.show');
+    Route::get('/member/{id}/edit', [MembersController::class, 'update'])->name('members.edit');
+
+    // Add manual points to youth member
+    Route::patch('/updatePoints/{id}', [MemberPointsController::class, 'update'])->name('updatePoints');
+
+    Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
     Route::get('/item-edit/{item_id}', [RedeemController::class, 'edit'])->name('get.item.edit');
     Route::patch('/item-edit/{item_id}', [RedeemController::class, 'update'])->name('redeem.update');
     Route::get('/item-create', [RedeemController::class, 'create'])->name('redeem.create');
     Route::delete('/item-delete/{item_id}', [RedeemController::class, 'destroy'])->name('redeem.destroy');
     Route::post('/item-create', [RedeemController::class, 'store'])->name('redeem.store');
-    Route::post('addmember', [AddMemberController::class, 'store'])->name('store');
+    // Route::post('addmember', [AddMemberController::class, 'store'])->name('store');
 
     Route::post('/redeem-item', [ItemRedemptionController::class, 'redeemItem'])->name('redeem.item');
+
+    Route::resource('members', MembersController::class);
 });
+
 
 require __DIR__.'/auth.php';

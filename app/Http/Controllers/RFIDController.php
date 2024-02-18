@@ -9,11 +9,11 @@ class RFIDController extends Controller
     public function redeem(Request $request)
     {
         $request->validate([
-            'node_id' => 'required|numeric',
+            // 'node_id' => 'required|numeric',
             'rfid' => 'required|numeric',
         ]);
     
-        $member = Member::where('rfid', $request->rfid)->first();
+        $member = Member::where('card_id', $request->rfid)->first();
     
         // Assuming you want to send some data to the front end
         $responseData = [
