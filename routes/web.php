@@ -11,6 +11,7 @@ use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemRedemptionController;
 use App\Models\MemberPoints;
+use App\Models\RFIDResult;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,17 +43,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/event-create', [EventsController::class, 'store'])->name('events.store');
     Route::delete('/events/{event_id}', [EventsController::class, 'destroy'])->name('event.destroy');
     
-
+    
+    Route::post('/add-member', [MembersController::class, 'store'])->name('members.store');
+    Route::get('/members/{card_id}', [MembersController::class, 'show'])->name('members.show');
+    Route::get('/member/{id}/edit', [MembersController::class, 'update'])->name('members.edit');
     Route::get('/members', [MembersController::class, 'index'])->name('members.index');
     Route::post('/members/find', [MembersController::class, 'find'])->name('members.find');
     Route::patch('/members/edit', [MembersController::class, 'edit'])->name('members.update');
     Route::delete('/members/delete', [MembersController::class, 'destroy'])->name('members.destroy');
 
     Route::get('/redeem', [RedeemController::class, 'index'])->name('redeem.index');
-
-    Route::post('/addmember', [MembersController::class, 'store'])->name('store');
-    Route::get('/members/{card_id}', [MembersController::class, 'show'])->name('members.show');
-    Route::get('/member/{id}/edit', [MembersController::class, 'update'])->name('members.edit');
 
     // Add manual points to youth member
     Route::patch('/updatePoints/{id}', [MemberPointsController::class, 'update'])->name('updatePoints');
@@ -68,6 +68,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/redeem-item', [ItemRedemptionController::class, 'redeemItem'])->name('redeem.item');
 
     Route::resource('members', MembersController::class);
+
+    Route::get('/get-latest-rfid', function () {
+        $id = RFIDResult::latest()->first();
+        if ($id) {
+            return $id;
+        }
+    return response()->json(['message' => 'No RFID found'], 404);
+    })->name('get.latest.rfid');
 });
 
 

@@ -5,14 +5,10 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex w-full bg-white overflow-hidden shadow-sm sm:rounded-lg my-5">
-                <div class="flex-1">
-                    <form class="flex justify-start p-4 items-center" method="GET" action="{{ route('members.index') }}">
-                        <x-text-input id="search" name="search" placeholder="Search..."/>
-                        <button class="bg-secondary text-white p-2 rounded-md ms-2 hover:bg-secondary_hover transition-colors duration-200" type="submit">Search</button>
-                    </form>
-                </div>
-                <div class="flex-1 flex justify-end p-4 items-center">
+        <div class="flex w-full bg-white overflow-hidden shadow-sm sm:rounded-lg my-5">
+            <div class="flex-1">
+                <form class="flex justify-start p-4 items-center" method="GET" action="{{ route('members.index') }}">
+                    <x-text-input id="search" name="search" placeholder="Search..." />
                     <button
                         class="bg-secondary text-white p-2 rounded-md ms-2 hover:bg-secondary_hover transition-colors duration-200"
                         type="submit">Search</button>
@@ -43,20 +39,22 @@
                         <x-table.td>{{ $member->purok }}</x-table.td>
                         <x-table.td>{{ $member->youth_classification }}</x-table.td>
                         <x-table.td>
-                          <button
-                                class="text-sm text-white bg-blue-500 hover:bg-blue-600 px-2 py-1 rounded"
-                                
-                            > <a href="{{ url('/members/' . $member->id) }}">View</a></button>  
-                            <button
-                                class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
-                                 {{-- x-data=""
-                                x-on:click.prevent="$dispatch('open-modal', 'edit-user')" id="{{ $member->id }}"> --}}
-                                > <a href="{{ url('/members/' . $member->id . '/edit') }}">Edit</a>
+                            <button class="text-sm text-white bg-blue-500 hover:bg-blue-600 px-2 py-1 rounded"> <a
+                                    href="{{ url('/members/' . $member->id) }}">View</a></button>
+                            <button class="text-sm text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded"
+                                {{-- x-data=""
+                                x-on:click.prevent="$dispatch('open-modal', 'edit-user')" id="{{ $member->id }}"> --}}> <a
+                                    href="{{ url('/members/' . $member->id . '/edit') }}">Edit</a>
                             </button>
-                            <form method="POST" action="{{ url('/members' . '/' . $member->id) }}" accept-charset="UTF-8" style="display:inline">
+                            <form method="POST" action="{{ url('/members' . '/' . $member->id) }}"
+                                accept-charset="UTF-8" style="display:inline">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
-                                <button type="submit" class="text-sm text-white bg-red-500 hover:bg-red-600 px-2 py-1 rounded" title="Delete Student" onclick="return confirm('Confirm delete? {{ $member->name }}')"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                <button type="submit"
+                                    class="text-sm text-white bg-red-500 hover:bg-red-600 px-2 py-1 rounded"
+                                    title="Delete Student"
+                                    onclick="return confirm('Confirm delete? {{ $member->name }}')"><i
+                                        class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                             </form>
                         </x-table.td>
                     </tr>
