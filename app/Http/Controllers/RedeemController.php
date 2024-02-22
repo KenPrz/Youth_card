@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Commodity;
+use App\Models\Member;
+use App\Models\MemberPoints;
 class RedeemController extends Controller
 {
     /**
@@ -130,6 +132,29 @@ class RedeemController extends Controller
             return redirect()->route('redeem.index')->with('success', 'Item deleted successfully');
         } else {
             return redirect()->route('redeem.index')->with('error', 'Item not found');
+        }
+    }
+
+    public function redeemItem(Request $request)
+    {
+        $request->validate([
+            'member_rfid' => 'required|string',
+            'item_id' => 'required|numeric',
+        ]);
+        $member = Member::where('rfid', $request->member_rfid)->first();
+        $item = Commodity::find($request->item_id);
+        if ($member && $item) {
+            $memberPoints = MemberPoints::where('member_id', $member->id)->first();
+            if ($memberPoints->points >= $item->required_points) {
+                $memberPoints->update([
+                    'points' => $memberPoints->points - $item->required_points,
+                ]);
+                return response()->with('success', 'Item redeemed successfully');
+            } else {
+                return response()->withCookie('error', 'Insufficient points');
+            }
+        } else {
+            return response()->with('error', 'Member or item not found');
         }
     }
 }

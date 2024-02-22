@@ -1,4 +1,4 @@
-<form class="w-full max-w-lg" action="addmember" method="POST">
+<form class="w-full max-w-lg" action="{{route('members.store')}}" method="POST">
     @csrf
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -6,7 +6,7 @@
                 for="grid-first-name">
                 Youth RFID
             </label>    
-            <input name="card_id"
+            <input readonly name="card_id"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="card_id" type="text" placeholder="########"  required>   
         </div>
@@ -49,7 +49,7 @@
             </label>
             <input name="age" required name="contact_number"
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-age" type="text" placeholder="">
+                id="grid-age" type="number" placeholder="">
         </div>
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -131,27 +131,18 @@
     </div>
 </form>
 
-<script>
-    // function fetchLatestRFIDData() {
-    //     fetch('/api/test') // Ensure the correct endpoint is used here
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw new Error('Network response was not ok');
-    //             }
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             // Update the form fields with the latest RFID data
-    //             document.getElementById('card_id').value = data['RFID Result'];
-    //             // Update other form fields as needed
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching latest RFID data:', error);
-    //         });
-    // }
-
-    // // Fetch the latest RFID data every 5 seconds
-    // setInterval(fetchLatestRFIDData, 5000);
-    // console.log(data);
-
+<script type="module">
+    let intervalId;
+    function fetchLatestRFIDData(){
+        $.ajax({
+            url: '{{ route('get.latest.rfid') }}',
+            method: 'get',
+            success: function(response){
+                console.log(response.rfid);
+                clearInterval(intervalId);
+                $('#card_id').val(response.rfid);
+            },
+        });
+    }
+    intervalId = setInterval(fetchLatestRFIDData, 1000);
 </script>
