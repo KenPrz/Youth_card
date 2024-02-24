@@ -1,4 +1,4 @@
-<form class="w-full max-w-lg" action="{{route('members.store')}}" method="POST">
+<form id="member-form" class="w-full max-w-lg" action="{{route('members.store')}}" method="POST">
     @csrf
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -132,17 +132,18 @@
 </form>
 
 <script type="module">
-    let intervalId;
-    function fetchLatestRFIDData(){
-        $.ajax({
-            url: '{{ route('get.latest.rfid') }}',
-            method: 'get',
-            success: function(response){
-                console.log(response.rfid);
-                clearInterval(intervalId);
-                $('#card_id').val(response.rfid);
-            },
-        });
-    }
-    intervalId = setInterval(fetchLatestRFIDData, 1000);
+    $(document).ready(function(){
+        let intervalId;
+        function fetchLatestRFIDData(){
+            $.ajax({
+                url: '{{ route('get.latest.rfid') }}',
+                method: 'get',
+                success: function(response){
+                    // console.log(response.rfid);
+                    $('#card_id').val(response.rfid);
+                },
+            });
+        }
+        intervalId = setInterval(fetchLatestRFIDData, 1000);
+    });
 </script>
