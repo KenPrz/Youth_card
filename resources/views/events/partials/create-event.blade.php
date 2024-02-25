@@ -11,9 +11,9 @@
                 <x-misc.card-component class="mt-5" id="primary-event-details-section">
                     @include('events.partials.event-creation-form.primary-event-details-section')
                 </x-misc.card-component> 
-                <x-misc.card-component class="mt-5" id="event-organizers-details-section">
+                <div class="mt-5 w-full flex items-center justify-between bg-white shadow-sm sm:rounded-lg" id="event-organizers-details-section">
                     @include('events.partials.event-creation-form.event-organizers-details-section')
-                </x-misc.card-component>
+                </div>
                 <x-misc.card-component class="mt-5" id="event-summary-section">
                     @include('events.partials.event-creation-form.event-summary-section')
                 </x-misc.card-component>

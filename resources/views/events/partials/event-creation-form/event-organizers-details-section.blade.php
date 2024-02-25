@@ -15,15 +15,14 @@
                     <input placeholder="Role Name" class="focus-ring-0 border-none block mt-1 w-full" type="text" name="organizers[1][role_name]" required autofocus />
                 </td>
                 <td class="border-2">
-                    <div class="w-full flex justify-center items-center">
-                        <button
-                            x-data=""
-                            x-on:click.prevent="$dispatch('open-modal', 'add-organizer')"
-                            type="button"
-                            class="font-semibold text-blue-500 hover:text-blue-600 transition-colors duration-200">
-                            <span>Add Name</span>
-                        </button>
-                    </div>
+                    <x-select
+                        label="Search a User"
+                            wire:model.defer="model"
+                            placeholder="Select some user"
+                            :async-data="route('events.search-name')"
+                            option-label="name"
+                            option-value="id"
+                    />
                 </td>
                 <td class="border-2">
                     <input placeholder="Point Reward" 
@@ -52,42 +51,28 @@
         </button>
     </div>
 </div>
-    <x-modal :maxWidth="'sm'" id="search-modal" name="add-organizer" :show="$errors->addOrganizer->isNotEmpty()" focusable x-on:close-modal="closeModal">
-        @include('events.partials.event-creation-form.name-search')
-    </x-modal>
-<script>
-    // Add event listener for adding roles
-    document.getElementById('add-role-button').addEventListener('click', function () {
-        addRoleRow();
+<script type="module">
+    $(document).ready(function(){
+        $("#add-role-button").click(function() {
+            // Clone the parent <tr>
+            var clonedRow = $(".organizer-row").first().clone();
+            
+            // Increment the data-row-index attribute value
+            var rowIndex = parseInt(clonedRow.data('row-index')) + 1;
+            clonedRow.attr('data-row-index', rowIndex);
+            
+            // Clear input values if needed
+            clonedRow.find('input[type="text"], input[type="number"]').val('');
+            
+            // Append the cloned row to the table body
+            clonedRow.appendTo($("#event-organizers-table tbody"));
+        });
+        $(document).on('click', '.delete-role-button', function() {
+            if ($('.organizer-row').length === 1) {
+                alert('You cannot delete the last row');
+                return;
+            }
+            $(this).closest('tr').remove();
+        });
     });
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('delete-role-button')) {
-            deleteRoleRow(event.target.closest('.organizer-row'));
-        }
-    });
-
-    function addRoleRow() {
-        const tableBody = document.querySelector('#event-organizers-table tbody');
-        const newRow = tableBody.lastElementChild.cloneNode(true);
-        const newIndex = tableBody.childElementCount + 1;
-
-        newRow.setAttribute('data-row-index', newIndex);
-        newRow.querySelector('input[name^="organizers"]').name = `organizers[${newIndex}][role_name]`;
-        newRow.querySelector('input[name^="organizers"]').value = '';
-        newRow.querySelector('input[name^="organizers"]').name = `organizers[${newIndex}][role_points]`;
-        newRow.querySelector('input[name^="organizers"]').value = '';
-
-        tableBody.appendChild(newRow);
-    }
-
-    function deleteRoleRow(row) {
-        const tableBody = document.querySelector('#event-organizers-table tbody');
-        if (tableBody.childElementCount > 1) {
-            tableBody.removeChild(row);
-        }
-    }
-
-    function getMemberName(){
-        console.log('clicked');
-    }
-</script>
+</script>  

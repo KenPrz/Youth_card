@@ -1,17 +1,12 @@
 <div class="container">
-    <form method="GET" action="{{ route('events.search-name') }}">
-        <div class="flex justify-center items-center my-2">
-            <input type="text" name="name" id="search-form" class="w-1/2 border border-gray-300 rounded-md p-2"
-                placeholder="Search for a member">
-            <button type="submit"
-                class="px-3 py-2 ms-2 rounded-lg font-semibold text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200">
-                <span>Search</span>
-            </button>
-        </div>
-        <table>
-
-        </table>
-    </form>
+    <x-select
+        label="Search a User"
+        wire:model.defer="model"
+        placeholder="Select some user"
+        :async-data="route('events.search-name')"
+        option-label="name"
+        option-value="id"
+    />
 </div>
 <script type="module">
     import axios from 'axios';
