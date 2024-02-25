@@ -139,11 +139,10 @@
                 url: '{{ route('get.latest.rfid') }}',
                 method: 'get',
                 success: function(response){
-                    // console.log(response.rfid);
                     $('#card_id').val(response.rfid);
                 },
             });
         }
-        intervalId = setInterval(fetchLatestRFIDData, 1000);
+        intervalId = setInterval(fetchLatestRFIDData, 1800);
     });
 </script>

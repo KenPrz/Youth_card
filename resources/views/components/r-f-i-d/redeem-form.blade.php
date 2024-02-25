@@ -40,18 +40,19 @@
         </div>
     </div>
     <script type="module">
-        let intervalId;
-        function fetchLatestRFIDData(){
-            $.ajax({
-                url: '{{ route('get.latest.rfid') }}',
-                method: 'get',
-                success: function(response){
-                    console.log(response.rfid);
-                    clearInterval(intervalId);
-                    $('#card_number').val(response.rfid);
-                },
-            });
-        }
-        intervalId = setInterval(fetchLatestRFIDData, 1500);
+        $(document).ready(function(){
+            let intervalId;
+            function fetchLatestRFIDData(){
+                $.ajax({
+                    url: '{{ route('get.latest.rfid') }}',
+                    method: 'get',
+                    success: function(response){
+                        console.log(response.rfid);
+                        $('#card_number').val(response.rfid);
+                    },
+                });
+            }
+            intervalId = setInterval(fetchLatestRFIDData, 2500);
+        });
     </script>
 </div>

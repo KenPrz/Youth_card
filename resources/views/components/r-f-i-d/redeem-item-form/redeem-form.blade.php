@@ -37,15 +37,3 @@
         </form>
     </div>
 </div>
-<script>
-    function submitForm() {
-        if (this.formData.amount > {{ $quantity }}) {
-            alert('Insufficient stock!');
-            return;
-        } else if (this.formData.amount < 1 || this.formData.amount == null) {
-            alert('Invalid amount!');
-            return;
-        }
-        console.log(this.formData);
-    }
-</script>
